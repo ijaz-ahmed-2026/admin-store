@@ -5,8 +5,8 @@ import './style.css';
 
 const db=createClient(import.meta.env.VITE_SUPABASE_URL||'https://vgrcoalmlvirwlnhjkiz.supabase.co',import.meta.env.VITE_SUPABASE_ANON_KEY||'sb_publishable_AnQgBvVotdD7hI3r6V7OEQ_IUZ3-7K7');
 const money=n=>'৳'+Number(n||0).toLocaleString('en-BD');
-const statuses=['pending','confirmed','processing','shipped','delivered','on_hold','cancelled'];
-const statusLabel={pending:'Pending',confirmed:'Confirmed',processing:'Processing',shipped:'Shipped',delivered:'Delivered',on_hold:'On hold',cancelled:'Cancelled'};
+const statuses=['pending','confirmed','processing','scheduled','shipped','delivered','on_hold','cancelled'];
+const statusLabel={pending:'Pending',confirmed:'Confirmed',processing:'Processing',scheduled:'Scheduled',shipped:'Shipped',delivered:'Delivered',on_hold:'On hold',cancelled:'Cancelled'};
 const emptySettings={delivery_inside_dhaka:60,delivery_outside_dhaka:120,bkash_number:'',nagad_number:'',store_banner:'Everyday essentials, thoughtfully found.',store_notice:'Delivery across Bangladesh'};
 function App(){
  const [products,setProducts]=useState([]),[categories,setCategories]=useState([]),[cart,setCart]=useState([]),[query,setQuery]=useState(''),[category,setCategory]=useState('All'),[lang,setLang]=useState(false),[admin,setAdmin]=useState(false),[session,setSession]=useState(null),[isAdmin,setIsAdmin]=useState(false),[email,setEmail]=useState(''),[password,setPassword]=useState(''),[message,setMessage]=useState(''),[drawer,setDrawer]=useState(false),[orders,setOrders]=useState([]),[settings,setSettings]=useState(emptySettings),[tab,setTab]=useState('overview'),[geo,setGeo]=useState([]),[geoReady,setGeoReady]=useState(false),[busy,setBusy]=useState(false),[editing,setEditing]=useState(null);
