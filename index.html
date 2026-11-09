@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Store | Smart Shopping, Better Living</title>
-    <meta name="description" content="Admin Store — smart shopping and everyday essentials in Bangladesh.">
+    <title>Nivo Shop | Everyday Essentials, Thoughtfully Found</title>
+    <meta name="description" content="Nivo Shop — thoughtfully selected health, home, kitchen, gadget and everyday essentials with delivery across Bangladesh.">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
@@ -152,7 +152,7 @@
     <header class="sticky top-0 z-40 w-full glass-panel border-b border-white/80 px-4 lg:px-8 py-3.5 transition-all">
         <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
             
-            <!-- Logo: Admin Store with Metallic N & Shopping Cart -->
+            <!-- Logo: Nivo Shop with Metallic N & Shopping Cart -->
             <a href="#" class="flex items-center gap-3 group">
                 <div class="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 text-white shadow-md shadow-slate-900/10 group-hover:scale-105 transition-transform duration-300">
                     <!-- SVG Cart Symbol + 'N' Motif -->
@@ -164,14 +164,14 @@
                     </svg>
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-2xl font-black tracking-tight text-slate-900 leading-none">Admin <span class="text-amber-600">Store</span></span>
+                    <span class="text-2xl font-black tracking-tight text-slate-900 leading-none">Nivo <span class="text-amber-600">Shop</span></span>
                     <span class="text-[9px] tracking-widest text-slate-500 uppercase font-semibold mt-1">Smart Shopping, Better Living</span>
                 </div>
             </a>
 
             <!-- Search Bar (Desktop View) -->
             <div class="hidden md:flex flex-1 max-w-md relative">
-                <input type="text" id="search-input" placeholder="Search products in Admin Store..." 
+                <input type="text" id="search-input" placeholder="Search products in Nivo Shop..." 
                     class="w-full glass-input rounded-full py-2.5 pl-10 pr-10 text-xs font-medium placeholder-slate-400 shadow-inner">
                 <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
                 <button id="clear-search" class="hidden absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 text-xs">
@@ -225,7 +225,7 @@
                     SHOP <span class="text-amber-600">SMART.</span><br>LIVE BETTER.
                 </h1>
                 <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 font-normal max-w-lg">
-                    Discover latest trending smart gadgets, wireless earbuds, home security cameras, and personal tech essentials in Bangladesh with verified quality & home delivery.
+                    Explore health and beauty, cleaning, daily accessories, gadgets, home decor, kitchen essentials and curated combo offers — delivered across Bangladesh.
                 </p>
                 <div class="flex flex-wrap gap-3">
                     <a href="#product-section" class="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition shadow-lg flex items-center gap-2">
@@ -363,7 +363,7 @@
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-slate-200/80">
                 <div class="space-y-3">
-                    <span class="text-2xl font-black tracking-tight text-slate-900">Admin <span class="text-amber-600">Store</span></span>
+                    <span class="text-2xl font-black tracking-tight text-slate-900">Nivo <span class="text-amber-600">Shop</span></span>
                     <p class="text-xs text-slate-500 leading-relaxed">Your modern Bangladesh destination for authentic gadgets, smart home tools, and wireless lifestyle accessories.</p>
                 </div>
                 <div>
@@ -392,7 +392,7 @@
                 </div>
             </div>
             <div class="pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-2">
-                <p>&copy; 2026 Admin Store. All Rights Reserved.</p>
+                <p>&copy; 2026 Nivo Shop. All Rights Reserved.</p>
                 <div class="flex gap-4">
                     <a href="#" class="hover:text-slate-800">Privacy Policy</a>
                     <a href="#" class="hover:text-slate-800">Terms of Service</a>
@@ -541,7 +541,7 @@
       <div class="min-h-screen w-full p-2 sm:p-4 flex items-start justify-center">
         <div class="w-full max-w-7xl min-h-[92vh] rounded-3xl bg-slate-50 shadow-2xl overflow-hidden border border-white/50">
           <header class="bg-slate-950 text-white px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
-            <div><div class="text-[10px] tracking-[.25em] uppercase text-amber-400 font-bold">ADMIN STORE</div><h2 class="text-lg sm:text-xl font-extrabold">Store Control Center</h2><p id="admin-auth-status" class="text-[11px] text-slate-300 mt-1">Secure Supabase administration</p></div>
+            <div><div class="text-[10px] tracking-[.25em] uppercase text-amber-400 font-bold">NIVO SHOP</div><h2 class="text-lg sm:text-xl font-extrabold">Store Control Center</h2><p id="admin-auth-status" class="text-[11px] text-slate-300 mt-1">Secure Supabase administration</p></div>
             <div class="flex items-center gap-2"><button id="admin-logout-btn" class="hidden px-3 py-2 rounded-xl bg-white/10 text-xs font-bold hover:bg-white/20">Sign out</button><button id="close-admin-btn" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20"><i class="fa-solid fa-xmark"></i></button></div>
           </header>
           <section id="admin-login-box" class="max-w-md mx-auto my-12 p-6 sm:p-8 bg-white rounded-3xl shadow-xl border border-slate-200">
@@ -685,13 +685,13 @@ async function adminRenderProducts(){
  const [pr,cr]=await Promise.all([db.from('products').select('*').order('created_at',{ascending:false}),db.from('categories').select('id,name').eq('is_active',true).order('sort_order')]);
  if(pr.error)throw pr.error;if(cr.error)throw cr.error;
  const list=pr.data||[], cats=cr.data||[];
- document.getElementById('admin-content').innerHTML='<div class="mb-4"><h2 class="text-2xl font-extrabold">Products</h2><p class="text-xs text-slate-500 mt-1">Add, edit, archive products and upload multiple images</p></div><div class="grid grid-cols-1 xl:grid-cols-[minmax(280px,380px)_1fr] gap-4"><form id="admin-product-form" class="bg-white border border-slate-200 rounded-2xl p-4 space-y-3"><h3 id="product-form-title" class="font-extrabold">Add product</h3><input id="ap-id" type="hidden"><input id="ap-name" required placeholder="Product name" class="glass-input w-full rounded-xl p-3 text-sm"><textarea id="ap-desc" placeholder="Description" rows="3" class="glass-input w-full rounded-xl p-3 text-sm"></textarea><div class="grid grid-cols-2 gap-2"><input id="ap-price" type="number" min="0" step="0.01" required placeholder="Price ৳" class="glass-input rounded-xl p-3 text-sm"><input id="ap-compare" type="number" min="0" step="0.01" placeholder="Compare price" class="glass-input rounded-xl p-3 text-sm"><input id="ap-stock" type="number" min="0" required value="0" placeholder="Stock" class="glass-input rounded-xl p-3 text-sm"><input id="ap-sku" placeholder="SKU (optional)" class="glass-input rounded-xl p-3 text-sm"></div><select id="ap-category" required class="glass-input w-full rounded-xl p-3 text-sm"><option value="">Choose category</option>'+cats.map(c=>'<option value="'+c.id+'">'+esc(c.name)+'</option>').join('')+'</select><label class="block text-xs font-bold text-slate-600">Product photos (select multiple)</label><input id="ap-images" type="file" multiple accept="image/png,image/jpeg,image/webp,image/avif" class="w-full text-xs"><div id="ap-current-images" class="text-[11px] text-slate-500">No existing images</div><label class="flex items-center gap-2 text-xs"><input id="ap-featured" type="checkbox"> Featured product</label><label class="flex items-center gap-2 text-xs"><input id="ap-active" type="checkbox" checked> Visible in storefront</label><div class="flex gap-2"><button class="flex-1 bg-slate-950 text-white rounded-xl py-3 text-xs font-bold">Save product</button><button type="button" onclick="adminResetProduct()" class="px-4 border rounded-xl text-xs font-bold">Reset</button></div><p id="ap-error" class="text-xs text-red-600"></p></form><div class="bg-white border border-slate-200 rounded-2xl p-4"><div class="flex justify-between items-center mb-3"><h3 class="font-extrabold">Inventory ('+list.length+')</h3><button onclick="adminNavigate(\'products\')" class="text-xs text-amber-700 font-bold">Refresh</button></div><div class="space-y-2">'+list.map(p=>'<div class="border border-slate-100 rounded-xl p-3 flex flex-wrap items-center gap-3"><div class="w-12 h-12 rounded-lg bg-slate-100 overflow-hidden flex items-center justify-center">'+(p.images&&p.images[0]?'<img src="'+esc(p.images[0])+'" class="w-full h-full object-cover">':'<i class="fa-solid fa-box text-slate-400"></i>')+'</div><div class="flex-1 min-w-[130px]"><div class="font-bold text-xs">'+esc(p.name)+'</div><div class="text-[10px] text-slate-500">৳ '+Number(p.price).toLocaleString('en-BD')+' · Stock '+p.stock+' · '+(p.is_active?'Active':'Archived')+'</div></div><button onclick="adminEditProduct(\''+p.id+'\')" class="px-3 py-2 rounded-lg bg-slate-100 text-xs font-bold">Edit</button><button onclick="adminArchiveProduct(\''+p.id+'\')" class="px-3 py-2 rounded-lg bg-red-50 text-red-600 text-xs font-bold">'+(p.is_active?'Archive':'Restore')+'</button></div>').join('')+'</div></div></div>';
+ document.getElementById('admin-content').innerHTML='<div class="mb-4"><h2 class="text-2xl font-extrabold">Products</h2><p class="text-xs text-slate-500 mt-1">Add, edit, archive products and upload multiple images</p></div><div class="grid grid-cols-1 xl:grid-cols-[minmax(280px,380px)_1fr] gap-4"><form id="admin-product-form" class="bg-white border border-slate-200 rounded-2xl p-4 space-y-3"><h3 id="product-form-title" class="font-extrabold">Add product</h3><input id="ap-id" type="hidden"><input id="ap-name" required placeholder="Product name" class="glass-input w-full rounded-xl p-3 text-sm"><textarea id="ap-desc" placeholder="Description" rows="3" class="glass-input w-full rounded-xl p-3 text-sm"></textarea><div class="grid grid-cols-2 gap-2"><input id="ap-price" type="number" min="0" step="0.01" required placeholder="Price ৳" class="glass-input rounded-xl p-3 text-sm"><input id="ap-compare" type="number" min="0" step="0.01" placeholder="Compare price" class="glass-input rounded-xl p-3 text-sm"><input id="ap-stock" type="number" min="0" required value="0" placeholder="Stock" class="glass-input rounded-xl p-3 text-sm"><input id="ap-sku" placeholder="SKU (optional)" class="glass-input rounded-xl p-3 text-sm"></div><select id="ap-category" required class="glass-input w-full rounded-xl p-3 text-sm"><option value="">Choose category</option>'+cats.map(c=>'<option value="'+c.id+'">'+esc(c.name)+'</option>').join('')+'</select><label class="block text-xs font-bold text-slate-600">Product photos (select multiple)</label><input id="ap-images" type="file" multiple accept="image/png,image/jpeg,image/webp,image/avif" class="w-full text-xs"><div id="ap-current-images" class="text-[11px] text-slate-500">No existing images</div><label class="block text-xs font-bold text-slate-600">Product video (MP4/WebM, up to 100 MB)</label><input id="ap-video" type="file" accept="video/mp4,video/webm,video/quicktime" class="w-full text-xs"><div id="ap-current-video" class="text-[11px] text-slate-500">No existing video</div><label class="flex items-center gap-2 text-xs"><input id="ap-featured" type="checkbox"> Featured product</label><label class="flex items-center gap-2 text-xs"><input id="ap-active" type="checkbox" checked> Visible in storefront</label><div class="flex gap-2"><button class="flex-1 bg-slate-950 text-white rounded-xl py-3 text-xs font-bold">Save product</button><button type="button" onclick="adminResetProduct()" class="px-4 border rounded-xl text-xs font-bold">Reset</button></div><p id="ap-error" class="text-xs text-red-600"></p></form><div class="bg-white border border-slate-200 rounded-2xl p-4"><div class="flex justify-between items-center mb-3"><h3 class="font-extrabold">Inventory ('+list.length+')</h3><button onclick="adminNavigate(\'products\')" class="text-xs text-amber-700 font-bold">Refresh</button></div><div class="space-y-2">'+list.map(p=>'<div class="border border-slate-100 rounded-xl p-3 flex flex-wrap items-center gap-3"><div class="w-12 h-12 rounded-lg bg-slate-100 overflow-hidden flex items-center justify-center">'+(p.images&&p.images[0]?'<img src="'+esc(p.images[0])+'" class="w-full h-full object-cover">':'<i class="fa-solid fa-box text-slate-400"></i>')+'</div><div class="flex-1 min-w-[130px]"><div class="font-bold text-xs">'+esc(p.name)+'</div><div class="text-[10px] text-slate-500">৳ '+Number(p.price).toLocaleString('en-BD')+' · Stock '+p.stock+' · '+(p.is_active?'Active':'Archived')+'</div></div><button onclick="adminEditProduct(\''+p.id+'\')" class="px-3 py-2 rounded-lg bg-slate-100 text-xs font-bold">Edit</button><button onclick="adminArchiveProduct(\''+p.id+'\')" class="px-3 py-2 rounded-lg bg-red-50 text-red-600 text-xs font-bold">'+(p.is_active?'Archive':'Restore')+'</button></div>').join('')+'</div></div></div>';
  document.getElementById('admin-product-form').addEventListener('submit',adminSaveProduct);
  window._adminProducts=list;
 }
 window.adminResetProduct=function(){
  const f=document.getElementById('admin-product-form');if(f)f.reset();
- document.getElementById('ap-id').value='';document.getElementById('ap-current-images').textContent='No existing images';document.getElementById('product-form-title').textContent='Add product';document.getElementById('ap-active').checked=true;
+ document.getElementById('ap-id').value='';document.getElementById('ap-current-images').textContent='No existing images';document.getElementById('ap-current-video').textContent='No existing video';document.getElementById('product-form-title').textContent='Add product';document.getElementById('ap-active').checked=true;
 };
 window.adminEditProduct=function(id){
  const p=(window._adminProducts||[]).find(x=>x.id===id);if(!p)return;
@@ -699,14 +699,14 @@ window.adminEditProduct=function(id){
  document.getElementById('ap-price').value=p.price;document.getElementById('ap-compare').value=p.compare_at_price||'';document.getElementById('ap-stock').value=p.stock;
  document.getElementById('ap-sku').value=p.sku||'';document.getElementById('ap-category').value=p.category_id||'';
  document.getElementById('ap-featured').checked=!!p.is_featured;document.getElementById('ap-active').checked=!!p.is_active;
- document.getElementById('ap-current-images').textContent=(p.images||[]).length+' image(s) already saved. New uploads will be added.';
+ document.getElementById('ap-current-images').textContent=(p.images||[]).length+' image(s) already saved. New uploads will be added.';document.getElementById('ap-current-video').textContent=p.video_url?'Existing video saved. Upload a new one to replace it.':'No existing video';
  document.getElementById('product-form-title').textContent='Edit product';document.getElementById('ap-error').textContent='';
  document.getElementById('admin-product-form').scrollIntoView({behavior:'smooth',block:'start'});
 };
 async function adminSaveProduct(e){
  e.preventDefault();const err=document.getElementById('ap-error');err.textContent='Saving…';
  try{
-  const id=document.getElementById('ap-id').value, name=document.getElementById('ap-name').value.trim(), files=Array.from(document.getElementById('ap-images').files||[]);
+  const id=document.getElementById('ap-id').value, name=document.getElementById('ap-name').value.trim(), files=Array.from(document.getElementById('ap-images').files||[]), videoFile=document.getElementById('ap-video').files?.[0];
   let images=id?(((window._adminProducts||[]).find(p=>p.id===id)||{}).images||[]):[];
   for(const file of files){
    const ext=(file.name.split('.').pop()||'jpg').toLowerCase(),path='products/'+crypto.randomUUID()+'.'+ext;
@@ -714,7 +714,9 @@ async function adminSaveProduct(e){
    if(uploadError)throw uploadError;
    images.push(db.storage.from('product-images').getPublicUrl(path).data.publicUrl);
   }
-  const payload={name,slug:name.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')+'-'+Date.now(),description:document.getElementById('ap-desc').value.trim(),price:Number(document.getElementById('ap-price').value),compare_at_price:document.getElementById('ap-compare').value?Number(document.getElementById('ap-compare').value):null,stock:Number(document.getElementById('ap-stock').value),sku:document.getElementById('ap-sku').value.trim()||null,category_id:document.getElementById('ap-category').value,images,is_featured:document.getElementById('ap-featured').checked,is_active:document.getElementById('ap-active').checked,updated_at:new Date().toISOString()};
+  let videoUrl=id?(((window._adminProducts||[]).find(p=>p.id===id)||{}).video_url||null):null;
+  if(videoFile){if(videoFile.size>100*1024*1024)throw new Error('Video must be 100 MB or smaller');const ext=(videoFile.name.split('.').pop()||'mp4').toLowerCase(),path='videos/'+crypto.randomUUID()+'.'+ext;const {error:videoError}=await db.storage.from('product-media').upload(path,videoFile,{upsert:false,contentType:videoFile.type});if(videoError)throw videoError;videoUrl=db.storage.from('product-media').getPublicUrl(path).data.publicUrl;}
+  const payload={name,slug:name.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')+'-'+Date.now(),description:document.getElementById('ap-desc').value.trim(),price:Number(document.getElementById('ap-price').value),compare_at_price:document.getElementById('ap-compare').value?Number(document.getElementById('ap-compare').value):null,stock:Number(document.getElementById('ap-stock').value),sku:document.getElementById('ap-sku').value.trim()||null,category_id:document.getElementById('ap-category').value,images,video_url:videoUrl,is_featured:document.getElementById('ap-featured').checked,is_active:document.getElementById('ap-active').checked,updated_at:new Date().toISOString()};
   const result=id?await db.from('products').update(payload).eq('id',id):await db.from('products').insert(payload);
   if(result.error)throw result.error;
   await loadStore();toast(id?'Product updated':'Product added','success');await adminRenderProducts();
@@ -745,7 +747,7 @@ async function adminRenderSettings(){
  const {data,error}=await db.from('store_settings').select('key,value').order('key');if(error)throw error;
  const vals={};(data||[]).forEach(x=>{let v=x.value;try{if(typeof v==='string')v=JSON.parse(v)}catch(e){}vals[x.key]=v});
  const val=k=>typeof vals[k]==='object'?JSON.stringify(vals[k]):(vals[k]??'');
- document.getElementById('admin-content').innerHTML='<div class="mb-4"><h2 class="text-2xl font-extrabold">Store Settings</h2><p class="text-xs text-slate-500 mt-1">Changes are saved to Supabase and shared across devices</p></div><form id="admin-settings-form" class="bg-white border rounded-2xl p-4 sm:p-6 max-w-3xl space-y-4"><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><label class="text-xs font-bold">Store name<input id="st-name" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(vals.store?.name||'ADMIN STORE')+'"></label><label class="text-xs font-bold">Tagline<input id="st-tagline" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(vals.store?.tagline||'')+'"></label><label class="text-xs font-bold">Inside Dhaka delivery ৳<input id="st-inside" type="number" min="0" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(val('delivery_inside_dhaka'))+'"></label><label class="text-xs font-bold">Outside Dhaka delivery ৳<input id="st-outside" type="number" min="0" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(val('delivery_outside_dhaka'))+'"></label><label class="text-xs font-bold">bKash number<input id="st-bkash" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(val('bkash_number'))+'"></label><label class="text-xs font-bold">Nagad number<input id="st-nagad" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(val('nagad_number'))+'"></label><label class="text-xs font-bold sm:col-span-2">Store banner<input id="st-banner" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(val('store_banner'))+'"></label><label class="text-xs font-bold sm:col-span-2">Store notice<input id="st-notice" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(val('store_notice'))+'"></label></div><button class="px-6 py-3 bg-slate-950 text-white rounded-xl text-xs font-bold">Save settings</button><p class="text-[11px] text-slate-500">Note: payment numbers are stored as settings; automatic payment gateway collection is not enabled.</p></form>';
+ document.getElementById('admin-content').innerHTML='<div class="mb-4"><h2 class="text-2xl font-extrabold">Store Settings</h2><p class="text-xs text-slate-500 mt-1">Changes are saved to Supabase and shared across devices</p></div><form id="admin-settings-form" class="bg-white border rounded-2xl p-4 sm:p-6 max-w-3xl space-y-4"><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><label class="text-xs font-bold">Store name<input id="st-name" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(vals.store?.name||'NIVO SHOP')+'"></label><label class="text-xs font-bold">Tagline<input id="st-tagline" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(vals.store?.tagline||'')+'"></label><label class="text-xs font-bold">Inside Dhaka delivery ৳<input id="st-inside" type="number" min="0" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(val('delivery_inside_dhaka'))+'"></label><label class="text-xs font-bold">Outside Dhaka delivery ৳<input id="st-outside" type="number" min="0" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(val('delivery_outside_dhaka'))+'"></label><label class="text-xs font-bold">bKash number<input id="st-bkash" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(val('bkash_number'))+'"></label><label class="text-xs font-bold">Nagad number<input id="st-nagad" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(val('nagad_number'))+'"></label><label class="text-xs font-bold sm:col-span-2">Store banner<input id="st-banner" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(val('store_banner'))+'"></label><label class="text-xs font-bold sm:col-span-2">Store notice<input id="st-notice" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(val('store_notice'))+'"></label></div><button class="px-6 py-3 bg-slate-950 text-white rounded-xl text-xs font-bold">Save settings</button><p class="text-[11px] text-slate-500">Note: payment numbers are stored as settings; automatic payment gateway collection is not enabled.</p></form>';
  document.getElementById('admin-settings-form').addEventListener('submit',adminSaveSettings);
 }
 async function adminSaveSettings(e){
