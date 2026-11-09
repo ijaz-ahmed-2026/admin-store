@@ -1,1 +1,628 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="theme-color" content="#17283e"/><meta name="description" content="ADMIN STORE — everyday essentials, smart finds and useful products in Bangladesh."/><title>ADMIN STORE — Everyday, made better</title></head><body><div id="root"></div><script type="module" src="/src/main.jsx"></script></body></html>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nivo Shop | Smart Shopping, Better Living</title>
+    <meta name="description" content="Nivo Shop — smart shopping and everyday essentials in Bangladesh.">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Plus Jakarta Sans Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        nivo: {
+                            gold: '#C59B27',
+                            goldHover: '#B38918',
+                            dark: '#111827',
+                            grayBg: '#F3F4F6',
+                            cardBg: 'rgba(255, 255, 255, 0.72)',
+                            glassBorder: 'rgba(255, 255, 255, 0.9)',
+                            shadowClr: 'rgba(15, 23, 42, 0.08)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+            color: #0f172a;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Fluid Liquid Blobs (Light Mode) */
+        .liquid-blob-1 {
+            position: fixed;
+            top: -10%;
+            left: -5%;
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            filter: blur(90px);
+            z-index: -1;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+
+        .liquid-blob-2 {
+            position: fixed;
+            bottom: -5%;
+            right: -5%;
+            width: 650px;
+            height: 650px;
+            background: radial-gradient(circle, rgba(203, 213, 225, 0.4) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            animation: float 25s infinite alternate-reverse ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 40px) scale(1.08); }
+            100% { transform: translate(-30px, 60px) scale(0.95); }
+        }
+
+        /* Light Glassmorphism Panel Styles */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04), 0 4px 12px -2px rgba(0, 0, 0, 0.02);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.95);
+            box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.05);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.1), 0 0 15px rgba(197, 155, 39, 0.2);
+            border-color: rgba(197, 155, 39, 0.4);
+        }
+
+        .glass-input {
+            background: rgba(248, 250, 252, 0.85);
+            border: 1px solid rgba(203, 213, 225, 0.8);
+            backdrop-filter: blur(8px);
+            color: #0f172a;
+            transition: all 0.2s ease;
+        }
+
+        .glass-input:focus {
+            outline: none;
+            border-color: #C59B27;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(197, 155, 39, 0.15);
+        }
+
+        /* Metallic Gold Gradient Text */
+        .gold-text {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 40%, #C59B27 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #C59B27;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between relative selection:bg-amber-100 selection:text-amber-900">
+
+    <!-- Fluid Background Animation Effects -->
+    <div class="liquid-blob-1"></div>
+    <div class="liquid-blob-2"></div>
+
+    <!-- Notification Toast Handler -->
+    <div id="toast-container" class="fixed top-20 right-5 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+    <!-- Light Theme Navigation Bar -->
+    <header class="sticky top-0 z-40 w-full glass-panel border-b border-white/80 px-4 lg:px-8 py-3.5 transition-all">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            
+            <!-- Logo: Nivo Shop with Metallic N & Shopping Cart -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 text-white shadow-md shadow-slate-900/10 group-hover:scale-105 transition-transform duration-300">
+                    <!-- SVG Cart Symbol + 'N' Motif -->
+                    <svg class="w-6 h-6 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <path d="M3 3h2l1 5h13l1.5-5H5" stroke-linecap="round"/>
+                        <path d="M6 8l1.5 8h10.5" stroke-linecap="round"/>
+                        <circle cx="9" cy="19" r="1.5" fill="currentColor"/>
+                        <circle cx="17" cy="19" r="1.5" fill="currentColor"/>
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-2xl font-black tracking-tight text-slate-900 leading-none">Nivo <span class="text-amber-600">Shop</span></span>
+                    <span class="text-[9px] tracking-widest text-slate-500 uppercase font-semibold mt-1">Smart Shopping, Better Living</span>
+                </div>
+            </a>
+
+            <!-- Search Bar (Desktop View) -->
+            <div class="hidden md:flex flex-1 max-w-md relative">
+                <input type="text" id="search-input" placeholder="Search products in Nivo Shop..." 
+                    class="w-full glass-input rounded-full py-2.5 pl-10 pr-10 text-xs font-medium placeholder-slate-400 shadow-inner">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                <button id="clear-search" class="hidden absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 text-xs">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="flex items-center gap-2 sm:gap-4">
+                <!-- Admin Panel Button -->
+                <button id="admin-modal-btn" title="Open Admin Backend" class="p-2.5 rounded-full glass-panel hover:bg-slate-100 text-slate-700 transition flex items-center gap-1.5 text-xs font-bold border border-slate-200">
+                    <i class="fa-solid fa-sliders text-amber-600"></i>
+                    <span class="hidden sm:inline">Admin Manager</span>
+                </button>
+
+                <!-- Wishlist Badge Button -->
+                <button id="wishlist-btn" class="relative p-2.5 rounded-full glass-panel hover:bg-slate-100 text-slate-700 transition">
+                    <i class="fa-regular fa-heart text-base"></i>
+                    <span id="wishlist-badge" class="hidden absolute -top-1 -right-1 bg-amber-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow">0</span>
+                </button>
+
+                <!-- Shopping Bag Button -->
+                <button id="cart-toggle-btn" class="relative flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white px-4 py-2.5 rounded-full transition shadow-lg shadow-slate-900/10">
+                    <i class="fa-solid fa-bag-shopping text-amber-400 text-sm"></i>
+                    <span class="text-xs font-bold hidden sm:inline">Cart</span>
+                    <span id="cart-badge" class="bg-amber-500 text-slate-950 text-xs font-black px-2 py-0.5 rounded-full min-w-[20px] text-center">0</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Search Field -->
+        <div class="mt-3 md:hidden">
+            <div class="relative">
+                <input type="text" id="search-input-mobile" placeholder="Search gadgets, audio, tools..." 
+                    class="w-full glass-input rounded-full py-2 pl-9 pr-8 text-xs">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 lg:px-8 py-6 w-full flex-1">
+
+        <!-- Hero Section (Clean Light Graphic Style) -->
+        <section class="relative rounded-3xl overflow-hidden glass-panel border border-white/90 p-6 md:p-12 mb-10 shadow-xl bg-gradient-to-r from-white/90 via-slate-50/80 to-amber-50/50">
+            <div class="relative z-10 max-w-2xl">
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 text-xs font-bold mb-4">
+                    <i class="fa-solid fa-bolt text-amber-600 text-[11px]"></i> Premium Authentic Products
+                </span>
+                <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-slate-900 leading-none mb-4">
+                    SHOP <span class="text-amber-600">SMART.</span><br>LIVE BETTER.
+                </h1>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 font-normal max-w-lg">
+                    Discover latest trending smart gadgets, wireless earbuds, home security cameras, and personal tech essentials in Bangladesh with verified quality & home delivery.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <a href="#product-section" class="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition shadow-lg flex items-center gap-2">
+                        Explore Catalog <i class="fa-solid fa-arrow-down text-[10px]"></i>
+                    </a>
+                    <a href="#categories-section" class="px-6 py-3 rounded-xl glass-panel hover:bg-white text-slate-800 font-bold text-xs transition border border-slate-200">
+                        View Categories
+                    </a>
+                </div>
+            </div>
+
+            <!-- Decorative Light Geometric Graphics -->
+            <div class="hidden lg:block absolute right-12 top-1/2 -translate-y-1/2 opacity-90 pointer-events-none">
+                <div class="w-64 h-64 rounded-full bg-gradient-to-tr from-amber-200/50 to-slate-200/50 blur-xl absolute -top-10 -left-10"></div>
+                <div class="relative glass-card p-6 rounded-3xl border border-white flex flex-col items-center gap-3 w-60 shadow-2xl">
+                    <div class="w-16 h-16 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center text-3xl">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <span class="text-xs font-bold text-slate-800 text-center">100% Genuine Products Guaranteed</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Workspace (Side Filter + Main Grid based on reference image) -->
+        <div id="product-section" class="flex flex-col lg:flex-row gap-8">
+            
+            <!-- Category Sidebar -->
+            <aside id="categories-section" class="w-full lg:w-64 flex-shrink-0">
+                <div class="glass-panel rounded-2xl p-5 sticky top-24 border border-white/90">
+                    <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-200/80">
+                        <h2 class="font-bold text-sm text-slate-900 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-sliders text-amber-600"></i> Category
+                        </h2>
+                        <span id="product-count-badge" class="text-[11px] bg-slate-200 text-slate-700 px-2.5 py-0.5 rounded-full font-bold">0 Items</span>
+                    </div>
+
+                    <!-- Dynamic Category Menu -->
+                    <div class="flex flex-col gap-1.5" id="category-list">
+                        <!-- Rendered by JS -->
+                    </div>
+
+                    <div class="mt-8 pt-5 border-t border-slate-200/80 space-y-3">
+                        <h3 class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Service Guarantee</h3>
+                        <div class="space-y-2.5 text-xs text-slate-600">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-truck-fast text-amber-600"></i>
+                                <span>Fast Bangladesh Delivery</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-rotate-left text-amber-600"></i>
+                                <span>7 Days Replacement</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-money-bill-transfer text-amber-600"></i>
+                                <span>Cash On Delivery Available</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Product Grid Section -->
+            <section class="flex-1">
+                
+                <!-- Sorting Bar -->
+                <div class="glass-panel rounded-2xl p-4 mb-6 flex flex-wrap items-center justify-between gap-4 border border-white/90">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-slate-500 font-medium">Selected Filter:</span>
+                        <span id="active-category-title" class="text-xs font-bold text-slate-900 bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-200">All Products</span>
+                    </div>
+
+                    <div class="flex items-center gap-3 ml-auto">
+                        <label for="sort-select" class="text-xs text-slate-500 font-semibold">Sort By:</label>
+                        <select id="sort-select" class="glass-input rounded-xl text-xs py-1.5 px-3 font-medium cursor-pointer">
+                            <option value="featured">Featured First</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating">Highest Rated</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Main Products Grid -->
+                <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                    <!-- Dynamic Product Cards injected here -->
+                </div>
+
+                <!-- Empty Filter Fallback -->
+                <div id="empty-state" class="hidden glass-panel rounded-2xl p-12 text-center my-8 border border-white">
+                    <i class="fa-solid fa-box-open text-4xl text-slate-300 mb-3"></i>
+                    <h3 class="text-base font-bold text-slate-800 mb-1">No Matching Products Found</h3>
+                    <p class="text-slate-500 text-xs max-w-sm mx-auto mb-5">Try adjusting your search terms or select another category filter.</p>
+                    <button id="reset-filter-btn" class="px-4 py-2 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-slate-800 transition">Reset All Filters</button>
+                </div>
+
+            </section>
+        </div>
+
+        <!-- Explore Our Recommendations Carousel (Layout identical to design mock) -->
+        <section class="mt-16">
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Explore Our Recommendations</h2>
+                    <p class="text-xs text-slate-500 mt-0.5">Top-trending smart gear carefully selected for you</p>
+                </div>
+            </div>
+
+            <div id="recommendations-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                <!-- Recommendations Injected Dynamically -->
+            </div>
+        </section>
+
+        <!-- Light Glassy Subscription Banner -->
+        <section class="mt-16 relative rounded-3xl overflow-hidden glass-panel border border-white/90 p-8 md:p-10 shadow-lg bg-gradient-to-r from-slate-900 to-slate-800 text-white">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                <div>
+                    <h2 class="text-2xl font-extrabold mb-2">Ready to Get Our New Stuff?</h2>
+                    <p class="text-slate-300 text-xs font-normal">Subscribe now to receive special discount offers, restock alerts, and new gadget updates.</p>
+                </div>
+                <div>
+                    <form id="newsletter-form" class="flex flex-col sm:flex-row gap-2">
+                        <input type="email" required placeholder="Enter your email..." class="flex-1 rounded-xl px-4 py-3 text-xs bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-amber-400">
+                        <button type="submit" class="px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition whitespace-nowrap shadow-md">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-panel border-t border-white/90 mt-20 pt-10 pb-8 px-4 lg:px-8 bg-white/60">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-slate-200/80">
+                <div class="space-y-3">
+                    <span class="text-2xl font-black tracking-tight text-slate-900">Nivo <span class="text-amber-600">Shop</span></span>
+                    <p class="text-xs text-slate-500 leading-relaxed">Your modern Bangladesh destination for authentic gadgets, smart home tools, and wireless lifestyle accessories.</p>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">Quick Navigation</h4>
+                    <ul class="space-y-2 text-xs text-slate-600">
+                        <li><a href="#product-section" class="hover:text-amber-600 transition">Shop All</a></li>
+                        <li><a href="#categories-section" class="hover:text-amber-600 transition">Categories</a></li>
+                        <li><a href="#" class="hover:text-amber-600 transition">Special Deals</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">Customer Support</h4>
+                    <ul class="space-y-2 text-xs text-slate-600">
+                        <li><a href="#" class="hover:text-amber-600 transition">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-amber-600 transition">Shipping & Delivery</a></li>
+                        <li><a href="#" class="hover:text-amber-600 transition">Return Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">Contact Info</h4>
+                    <ul class="space-y-2 text-xs text-slate-600">
+                        <li><i class="fa-solid fa-location-dot text-amber-600 mr-2"></i> Dhaka, Bangladesh</li>
+                        <li><i class="fa-solid fa-phone text-amber-600 mr-2"></i> +880 1700-000000</li>
+                        <li><i class="fa-solid fa-envelope text-amber-600 mr-2"></i> support@nivoshop.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-2">
+                <p>&copy; 2026 Nivo Shop. All Rights Reserved.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-slate-800">Privacy Policy</a>
+                    <a href="#" class="hover:text-slate-800">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Slide-over Cart Drawer -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden pointer-events-none transition-opacity duration-300 opacity-0">
+        <div id="cart-backdrop" class="absolute inset-0 bg-slate-900/40 backdrop-blur-xs pointer-events-auto transition-opacity"></div>
+        <div class="fixed inset-y-0 right-0 max-w-full flex pl-10 pointer-events-auto">
+            <div id="cart-panel" class="w-screen max-w-md glass-panel bg-white/95 border-l border-white shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out">
+                
+                <div class="p-5 border-b border-slate-200 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-bag-shopping text-amber-600"></i>
+                        <h2 class="text-base font-bold text-slate-900">Your Cart</h2>
+                        <span id="cart-item-count" class="text-xs bg-slate-100 text-slate-700 font-bold px-2.5 py-0.5 rounded-full">0 items</span>
+                    </div>
+                    <button id="close-cart-btn" class="p-2 text-slate-400 hover:text-slate-700 rounded-full hover:bg-slate-100 transition">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+
+                <div id="cart-items-container" class="flex-1 overflow-y-auto p-5 space-y-3">
+                    <!-- Dynamic Cart Items -->
+                </div>
+
+                <div class="p-5 border-t border-slate-200 bg-slate-50/80 space-y-3">
+                    <div class="flex justify-between text-xs text-slate-600">
+                        <span>Subtotal</span>
+                        <span id="cart-subtotal" class="font-bold text-slate-900">৳ 0</span>
+                    </div>
+                    <div class="flex justify-between text-base font-extrabold text-slate-900 pt-2 border-t border-slate-200">
+                        <span>Total Payable</span>
+                        <span id="cart-total" class="text-amber-600">৳ 0</span>
+                    </div>
+                    <button id="proceed-checkout-btn" class="w-full py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs transition shadow-lg flex items-center justify-center gap-2">
+                        Proceed to Checkout <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md hidden">
+        <div class="glass-panel bg-white/95 rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 md:p-8 shadow-2xl relative border border-white">
+            <button id="close-checkout-btn" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 p-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <h2 class="text-xl font-bold text-slate-900 mb-1 flex items-center gap-2">
+                <i class="fa-solid fa-truck-ramp-box text-amber-600"></i> Place Your Order
+            </h2>
+            <p class="text-xs text-slate-500 mb-6">Fill in your delivery details and choose a payment method.</p>
+
+            <form id="checkout-form" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Full Name *</label>
+                        <input type="text" id="cust-name" required placeholder="e.g. Rahim Chowdhury" class="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Phone Number *</label>
+                        <input type="tel" id="cust-phone" required placeholder="017XXXXXXXX" class="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Full Address *</label>
+                    <textarea id="cust-address" required rows="2" placeholder="House/Flat No, Street, Thana, District" class="w-full glass-input rounded-xl px-3.5 py-2 text-xs"></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                    <input id="cust-division" required placeholder="Division *" class="glass-input rounded-xl p-2.5 text-xs">
+                    <input id="cust-district" required placeholder="District *" class="glass-input rounded-xl p-2.5 text-xs">
+                    <input id="cust-thana" placeholder="Thana / Upazila" class="glass-input rounded-xl p-2.5 text-xs">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-2">Delivery Location *</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="glass-panel p-3 rounded-xl flex items-center justify-between cursor-pointer border hover:border-amber-500 bg-white">
+                            <div class="flex items-center gap-2">
+                                <input type="radio" name="shipping_location" value="dhaka" checked class="accent-amber-600">
+                                <span class="text-xs font-bold text-slate-800">Inside Dhaka</span>
+                            </div>
+                            <span class="text-xs font-extrabold text-amber-600">৳ 60</span>
+                        </label>
+                        <label class="glass-panel p-3 rounded-xl flex items-center justify-between cursor-pointer border hover:border-amber-500 bg-white">
+                            <div class="flex items-center gap-2">
+                                <input type="radio" name="shipping_location" value="outside" class="accent-amber-600">
+                                <span class="text-xs font-bold text-slate-800">Outside Dhaka</span>
+                            </div>
+                            <span class="text-xs font-extrabold text-amber-600">৳ 120</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-2">Payment Method *</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <label class="glass-panel p-2.5 rounded-xl text-center cursor-pointer border hover:border-amber-500 flex flex-col items-center bg-white">
+                            <input type="radio" name="payment_method" value="cod" checked class="accent-amber-600 mb-1">
+                            <span class="text-[11px] font-bold text-slate-800">Cash on Delivery</span>
+                        </label>
+                        <label class="glass-panel p-2.5 rounded-xl text-center cursor-pointer border hover:border-amber-500 flex flex-col items-center bg-white">
+                            <input type="radio" name="payment_method" value="bkash" class="accent-amber-600 mb-1">
+                            <span class="text-[11px] font-bold text-pink-600">bKash</span>
+                        </label>
+                        <label class="glass-panel p-2.5 rounded-xl text-center cursor-pointer border hover:border-amber-500 flex flex-col items-center bg-white">
+                            <input type="radio" name="payment_method" value="nagad" class="accent-amber-600 mb-1">
+                            <span class="text-[11px] font-bold text-orange-600">Nagad</span>
+                        </label>
+                    </div>
+                </div>
+
+                <input id="payment-reference" type="text" placeholder="bKash/Nagad Transaction ID (required for advance payment)" class="hidden w-full glass-input rounded-xl p-2.5 text-xs">
+                <div class="p-3.5 rounded-xl bg-slate-100/80 space-y-1.5 text-xs">
+                    <div class="flex justify-between text-slate-600">
+                        <span>Cart Total</span>
+                        <span id="checkout-subtotal" class="font-semibold">৳ 0</span>
+                    </div>
+                    <div class="flex justify-between text-slate-600">
+                        <span>Delivery Charge</span>
+                        <span id="checkout-shipping" class="font-semibold">৳ 60</span>
+                    </div>
+                    <div class="flex justify-between font-extrabold text-sm text-slate-900 pt-2 border-t border-slate-200">
+                        <span>Grand Total</span>
+                        <span id="checkout-total" class="text-amber-600">৳ 0</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs transition shadow-lg shadow-amber-500/20">
+                    Confirm Order
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin / Backend Product Manager Modal -->
+    <div id="admin-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md hidden">
+        <div class="glass-panel bg-white/95 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8 shadow-2xl relative border border-white">
+            <button id="close-admin-btn" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 p-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <h2 class="text-xl font-bold text-slate-900 mb-1 flex items-center gap-2">
+                <i class="fa-solid fa-database text-amber-600"></i> Backend Product Manager
+            </h2>
+            <p class="text-xs text-slate-500 mb-6">Secure Supabase admin: manage live products and inventory across devices.</p>
+
+            <div id="admin-login-box" class="p-4 rounded-2xl bg-amber-50 border border-amber-200 mb-5 space-y-3">
+                <h3 class="text-xs font-bold text-slate-800">ADMIN SIGN IN</h3>
+                <input id="admin-email" type="email" autocomplete="username" placeholder="Admin email" class="w-full glass-input rounded-xl p-2.5 text-xs">
+                <input id="admin-password" type="password" autocomplete="current-password" placeholder="Password" class="w-full glass-input rounded-xl p-2.5 text-xs">
+                <button id="admin-login-btn" type="button" class="w-full py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold">Sign in securely</button>
+                <button id="admin-logout-btn" type="button" class="hidden text-xs text-red-600 font-bold">Sign out</button>
+                <p id="admin-auth-status" class="text-[11px] text-slate-500">Admin access is restricted to assigned Supabase administrators.</p>
+            </div>
+            <!-- Add Product Form -->
+            <form id="add-product-form" class="space-y-3 p-4 rounded-2xl bg-slate-50 border border-slate-200 mb-6">
+                <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Add New Product</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <input type="text" id="new-prod-name" required placeholder="Product Title" class="glass-input rounded-xl p-2.5 text-xs">
+                    <select id="new-prod-cat" required class="glass-input rounded-xl p-2.5 text-xs">
+                        
+                    </select>
+                    <input type="number" id="new-prod-price" required placeholder="Price in BDT (৳)" class="glass-input rounded-xl p-2.5 text-xs">
+                    <input type="text" id="new-prod-tag" placeholder="Tag (e.g., Best Seller)" class="glass-input rounded-xl p-2.5 text-xs">
+                    <input type="number" id="new-prod-stock" min="0" value="10" placeholder="Stock quantity" class="glass-input rounded-xl p-2.5 text-xs">
+                    <input type="file" id="new-prod-image" accept="image/png,image/jpeg,image/webp,image/avif" class="glass-input rounded-xl p-2.5 text-xs">
+                </div>
+                <textarea id="new-prod-desc" required placeholder="Product Description" rows="2" class="w-full glass-input rounded-xl p-2.5 text-xs"></textarea>
+                <button type="submit" class="w-full py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition">
+                    + Add Product to Database
+                </button>
+            </form>
+
+            <div class="space-y-2">
+                <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Current Inventory</h3>
+                <div id="admin-inventory-list" class="space-y-2 max-h-60 overflow-y-auto pr-1">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL='https://vgrcoalmlvirwlnhjkiz.supabase.co';
+const SUPABASE_ANON_KEY='sb_publishable_AnQgBvVotdD7hI3r6V7OEQ_IUZ3-7K7';
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+const ICONS=['fa-heart','fa-broom','fa-bag-shopping','fa-mobile-screen-button','fa-couch','fa-kitchen-set','fa-tags'];
+let categories=[],products=[],cart=JSON.parse(localStorage.getItem('nivo_cart')||'[]'),wishlist=JSON.parse(localStorage.getItem('nivo_wishlist')||'[]');
+let currentCategory='all',searchQuery='',currentSort='featured',adminUser=null;
+const money=n=>'৳ '+Number(n||0).toLocaleString('en-BD');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function toast(m,type='info'){const c=document.getElementById('toast-container'),d=document.createElement('div');d.className='glass-panel px-4 py-3 rounded-xl border text-xs font-bold text-slate-900 shadow-lg bg-white mb-2';d.textContent=m;c.appendChild(d);setTimeout(()=>d.remove(),3200)}
+async function loadStore(){
+ const [cr,pr]=await Promise.all([db.from('categories').select('id,name,slug').eq('is_active',true).order('sort_order'),db.from('products').select('id,name,description,price,compare_at_price,stock,category_id,images,is_featured').eq('is_active',true).order('created_at',{ascending:false})]);
+ if(cr.error) throw cr.error;if(pr.error) throw pr.error;
+ categories=cr.data||[];products=(pr.data||[]).map(p=>({...p,categoryName:categories.find(c=>c.id===p.category_id)?.name||'Products',image:p.images?.[0]||'',rating:5,reviews:'',tag:p.is_featured?'Featured':'',oldPrice:p.compare_at_price||null,desc:p.description||''}));
+ renderCategories();renderProducts();renderRecommendations();updateCartUI();updateWishlistUI();
+}
+function renderCategories(){const el=document.getElementById('category-list');const cats=[{id:'all',name:'All Products'},...categories];el.innerHTML=cats.map((c,i)=>`<button onclick="setCategory('${c.id}')" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition ${currentCategory===c.id?'bg-slate-900 text-white shadow-md':'text-slate-600 hover:bg-white hover:text-slate-900'}"><span class="flex items-center gap-2.5"><i class="fa-solid ${ICONS[(i+6)%7]} ${currentCategory===c.id?'text-amber-400':'text-slate-400'}"></i>${esc(c.name)}</span><i class="fa-solid fa-chevron-right text-[9px] opacity-60"></i></button>`).join('');
+ const sel=document.getElementById('new-prod-cat');if(sel)sel.innerHTML=categories.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');}
+window.setCategory=id=>{currentCategory=id;document.getElementById('active-category-title').textContent=id==='all'?'All Products':categories.find(c=>c.id===id)?.name||'Products';renderCategories();renderProducts()};
+function cardImage(p){return p.image?`<img src="${esc(p.image)}" alt="${esc(p.name)}" class="w-full h-36 object-contain">`:`<div class="w-20 h-20 flex items-center justify-center text-slate-300"><i class="fa-solid fa-box-open text-4xl"></i></div>`}
+function renderProducts(){const grid=document.getElementById('products-grid'),empty=document.getElementById('empty-state');let list=products.filter(p=>(currentCategory==='all'||p.category_id===currentCategory)&&(`${p.name} ${p.categoryName}`.toLowerCase().includes(searchQuery.toLowerCase())));if(currentSort==='price-low')list.sort((a,b)=>a.price-b.price);if(currentSort==='price-high')list.sort((a,b)=>b.price-a.price);document.getElementById('product-count-badge').textContent=`${list.length} Items`;empty.classList.toggle('hidden',list.length>0);grid.innerHTML=list.map(p=>`<div class="glass-card rounded-2xl p-4 flex flex-col justify-between relative group"><div class="flex items-center justify-between mb-3"><span class="text-[9px] font-extrabold uppercase tracking-widest bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full">${esc(p.tag||p.categoryName)}</span><button onclick="toggleWishlist('${p.id}')" class="p-1.5 rounded-full hover:bg-slate-100 text-slate-400"><i class="${wishlist.includes(p.id)?'fa-solid text-red-500':'fa-regular'} fa-heart"></i></button></div><div class="bg-slate-100/70 rounded-xl p-4 flex items-center justify-center mb-4 h-40 overflow-hidden">${cardImage(p)}</div><div><h3 class="font-bold text-sm text-slate-900 line-clamp-1 mb-1">${esc(p.name)}</h3><p class="text-xs text-slate-500 line-clamp-2 mb-2">${esc(p.desc)}</p><div class="flex items-baseline gap-2 mb-4"><span class="text-base font-extrabold">${money(p.price)}</span>${p.oldPrice?`<span class="text-xs text-slate-400 line-through">${money(p.oldPrice)}</span>`:''}</div><div class="text-[10px] text-slate-500 mb-2">${p.stock>0?`In stock: ${p.stock}`:'Out of stock'}</div></div><div class="grid grid-cols-2 gap-2 pt-3 border-t border-slate-200/80"><button ${p.stock<=0?'disabled':''} onclick="addToCart('${p.id}')" class="py-2.5 rounded-xl glass-panel text-slate-800 font-bold text-xs disabled:opacity-40">Add to Cart</button><button ${p.stock<=0?'disabled':''} onclick="buyNow('${p.id}')" class="py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs disabled:opacity-40">Buy Now</button></div></div>`).join('')}
+function renderRecommendations(){const el=document.getElementById('recommendations-container');el.innerHTML=products.slice(0,4).map(p=>`<div class="glass-card rounded-2xl p-4"><div class="bg-slate-100 rounded-xl p-4 flex justify-center mb-3 h-28">${cardImage(p)}</div><div class="text-[9px] text-amber-600 font-bold">${esc(p.categoryName)}</div><h4 class="font-bold text-xs mb-2">${esc(p.name)}</h4><div class="text-xs font-black mb-3">${money(p.price)}</div><button onclick="addToCart('${p.id}')" class="w-full py-2 rounded-xl bg-slate-900 text-white text-xs font-bold">Add to Cart</button></div>`).join('')}
+window.addToCart=id=>{const p=products.find(x=>x.id===id);if(!p)return;const x=cart.find(x=>x.id===id);if(x)x.qty++;else cart.push({...p,qty:1});saveCart();updateCartUI();toast('Added to cart')};window.buyNow=id=>{window.addToCart(id);openCheckoutModal()};window.toggleWishlist=id=>{wishlist=wishlist.includes(id)?wishlist.filter(x=>x!==id):[...wishlist,id];localStorage.setItem('nivo_wishlist',JSON.stringify(wishlist));updateWishlistUI();renderProducts()};
+function saveCart(){localStorage.setItem('nivo_cart',JSON.stringify(cart))}function updateWishlistUI(){const b=document.getElementById('wishlist-badge');b.textContent=wishlist.length;b.classList.toggle('hidden',!wishlist.length)}
+function updateCartUI(){const n=cart.reduce((s,x)=>s+x.qty,0),sum=cart.reduce((s,x)=>s+x.price*x.qty,0);document.getElementById('cart-badge').textContent=n;document.getElementById('cart-subtotal').textContent=money(sum);document.getElementById('cart-items-container').innerHTML=cart.length?cart.map(x=>`<div class="flex items-center gap-3 p-3 bg-white rounded-xl border"><div class="w-14 h-14">${cardImage(x)}</div><div class="flex-1 min-w-0"><div class="font-bold text-xs truncate">${esc(x.name)}</div><div class="text-xs text-amber-600 font-bold">${money(x.price)}</div><div class="flex gap-2 mt-1"><button onclick="updateQty('${x.id}',-1)">−</button><span>${x.qty}</span><button onclick="updateQty('${x.id}',1)">+</button></div></div><button onclick="removeFromCart('${x.id}')" class="text-red-500">×</button></div>`).join(''):'<p class="text-xs text-slate-500">Your cart is empty.</p>'}
+window.updateQty=(id,d)=>{const x=cart.find(x=>x.id===id);if(x)x.qty+=d;cart=cart.filter(x=>x.qty>0);saveCart();updateCartUI()};window.removeFromCart=id=>{cart=cart.filter(x=>x.id!==id);saveCart();updateCartUI()};
+const drawer=document.getElementById('cart-drawer'),panel=document.getElementById('cart-panel');function openCartDrawer(){drawer.classList.remove('pointer-events-none','opacity-0');panel.classList.remove('translate-x-full')}function closeCartDrawer(){panel.classList.add('translate-x-full');drawer.classList.add('opacity-0','pointer-events-none')}
+function openCheckoutModal(){if(!cart.length)return toast('Cart is empty','error');closeCartDrawer();updateCheckoutSummary();document.getElementById('checkout-modal').classList.remove('hidden')}
+function updateCheckoutSummary(){let sub=cart.reduce((s,x)=>s+x.price*x.qty,0),zone=document.querySelector('input[name="shipping_location"]:checked').value,fee=zone==='outside'?120:60;document.getElementById('checkout-subtotal').textContent=money(sub);document.getElementById('checkout-shipping').textContent=money(fee);document.getElementById('checkout-total').textContent=money(sub+fee)}
+function setAdminState(user){adminUser=user;document.getElementById('admin-login-box').querySelector('#admin-email').disabled=!!user;document.getElementById('admin-password').classList.toggle('hidden',!!user);document.getElementById('admin-login-btn').classList.toggle('hidden',!!user);document.getElementById('admin-logout-btn').classList.toggle('hidden',!user);document.getElementById('add-product-form').classList.toggle('hidden',!user);document.getElementById('admin-auth-status').textContent=user?`Signed in as ${user.email}`:'Admin access is restricted to assigned Supabase administrators.'}
+async function checkAdmin(){const {data:{user}}=await db.auth.getUser();if(!user){setAdminState(null);return false}const {data,error}=await db.from('profiles').select('role').eq('id',user.id).single();if(error||!['admin','owner','manager'].includes(data?.role)){await db.auth.signOut();setAdminState(null);toast('Admin access not assigned','error');return false}setAdminState(user);return true}
+async function openAdminModal(){document.getElementById('admin-modal').classList.remove('hidden');if(await checkAdmin())renderAdminInventory();}
+async function renderAdminInventory(){if(!adminUser)return;const {data,error}=await db.from('products').select('id,name,price,stock').order('created_at',{ascending:false});if(error)return toast(error.message,'error');document.getElementById('admin-inventory-list').innerHTML=(data||[]).map(p=>`<div class="flex items-center justify-between p-2.5 bg-white rounded-xl border text-xs"><span class="font-bold truncate max-w-[160px]">${esc(p.name)} · ${p.stock} pcs</span><b>${money(p.price)}</b><button onclick="deleteProduct('${p.id}')" class="text-red-500 px-2">Delete</button></div>`).join('')||'<p class="text-xs text-slate-500">No products yet.</p>'}
+window.deleteProduct=async id=>{if(!adminUser||!confirm('Delete this product?'))return;const {error}=await db.from('products').delete().eq('id',id);if(error)return toast(error.message,'error');await loadStore();renderAdminInventory();toast('Product deleted')};
+async function addProduct(e){e.preventDefault();if(!adminUser)return toast('Admin login required','error');const name=document.getElementById('new-prod-name').value.trim(),price=Number(document.getElementById('new-prod-price').value),category_id=document.getElementById('new-prod-cat').value,desc=document.getElementById('new-prod-desc').value,stock=Number(document.getElementById('new-prod-stock').value||0),file=document.getElementById('new-prod-image').files[0];if(!category_id)return toast('Select a category','error');let images=[];if(file){const ext=file.name.split('.').pop().toLowerCase(),path=`${crypto.randomUUID()}.${ext}`;const {error:upErr}=await db.storage.from('product-images').upload(path,file,{upsert:false,contentType:file.type});if(upErr)return toast(upErr.message,'error');images=[db.storage.from('product-images').getPublicUrl(path).data.publicUrl]}const slug=name.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')+'-'+Date.now();const {error}=await db.from('products').insert({name,slug,description:desc,price,stock,category_id,images,is_active:true,is_featured:false});if(error)return toast(error.message,'error');e.target.reset();await loadStore();renderAdminInventory();toast('Product saved to Supabase')}
+async function submitOrder(e){e.preventDefault();if(!cart.length)return;const zone=document.querySelector('input[name="shipping_location"]:checked').value==='outside'?'outside_dhaka':'inside_dhaka',method=document.querySelector('input[name="payment_method"]:checked').value,reference=document.getElementById('payment-reference').value.trim();if(zone==='outside_dhaka'&&method==='cod')return toast('Outside Dhaka requires advance delivery-charge payment','error');if(method!=='cod'&&reference.length<4)return toast('Enter bKash/Nagad transaction reference','error');const payload={p_customer_name:document.getElementById('cust-name').value,p_phone:document.getElementById('cust-phone').value,p_division:document.getElementById('cust-division').value,p_district:document.getElementById('cust-district').value,p_thana:document.getElementById('cust-thana').value,p_address:document.getElementById('cust-address').value,p_delivery_note:'',p_delivery_zone:zone,p_payment_method:method,p_payment_reference:reference,p_items:cart.map(x=>({id:x.id,qty:x.qty}))};const btn=e.submitter;btn.disabled=true;btn.textContent='Placing order…';const {data,error}=await db.rpc('place_public_order',payload);btn.disabled=false;btn.textContent='Confirm Order';if(error)return toast(error.message,'error');cart=[];saveCart();updateCartUI();document.getElementById('checkout-modal').classList.add('hidden');e.target.reset();toast(`Order placed: ${data.order_number}`,'success')}
+function setup(){document.getElementById('cart-toggle-btn').addEventListener('click',openCartDrawer);document.getElementById('close-cart-btn').addEventListener('click',closeCartDrawer);document.getElementById('cart-backdrop').addEventListener('click',closeCartDrawer);document.getElementById('proceed-checkout-btn').addEventListener('click',openCheckoutModal);document.getElementById('close-checkout-btn').addEventListener('click',()=>document.getElementById('checkout-modal').classList.add('hidden'));document.getElementById('admin-modal-btn').addEventListener('click',openAdminModal);document.getElementById('close-admin-btn').addEventListener('click',()=>document.getElementById('admin-modal').classList.add('hidden'));document.getElementById('checkout-form').addEventListener('submit',submitOrder);document.getElementById('add-product-form').addEventListener('submit',addProduct);document.getElementById('admin-login-btn').addEventListener('click',async()=>{const email=document.getElementById('admin-email').value,password=document.getElementById('admin-password').value;const {error}=await db.auth.signInWithPassword({email,password});if(error)return toast(error.message,'error');if(await checkAdmin())renderAdminInventory()});document.getElementById('admin-logout-btn').addEventListener('click',async()=>{await db.auth.signOut();setAdminState(null)});document.querySelectorAll('input[name="shipping_location"]').forEach(x=>x.addEventListener('change',updateCheckoutSummary));document.querySelectorAll('input[name="payment_method"]').forEach(x=>x.addEventListener('change',()=>document.getElementById('payment-reference').classList.toggle('hidden',document.querySelector('input[name="payment_method"]:checked').value==='cod')));['search-input','search-input-mobile'].forEach(id=>document.getElementById(id).addEventListener('input',e=>{searchQuery=e.target.value;document.getElementById(id==='search-input'?'search-input-mobile':'search-input').value=e.target.value;renderProducts()}));document.getElementById('sort-select').addEventListener('change',e=>{currentSort=e.target.value;renderProducts()});document.getElementById('reset-filter-btn').addEventListener('click',()=>{currentCategory='all';searchQuery='';renderCategories();renderProducts()});document.getElementById('newsletter-form').addEventListener('submit',e=>{e.preventDefault();toast('Thank you for subscribing');e.target.reset()});}
+document.addEventListener('DOMContentLoaded',async()=>{setup();updateWishlistUI();try{await loadStore()}catch(e){console.error(e);toast('Store data could not load: '+e.message,'error')} });
+</script>
+</body>
+</html>
