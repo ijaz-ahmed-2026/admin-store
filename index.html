@@ -535,52 +535,48 @@
         </div>
     </div>
 
-    <!-- Admin / Backend Product Manager Modal -->
-    <div id="admin-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md hidden">
-        <div class="glass-panel bg-white/95 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8 shadow-2xl relative border border-white">
-            <button id="close-admin-btn" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 p-2">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
 
-            <h2 class="text-xl font-bold text-slate-900 mb-1 flex items-center gap-2">
-                <i class="fa-solid fa-database text-amber-600"></i> Backend Product Manager
-            </h2>
-            <p class="text-xs text-slate-500 mb-6">Secure Supabase admin: manage live products and inventory across devices.</p>
-
-            <div id="admin-login-box" class="p-4 rounded-2xl bg-amber-50 border border-amber-200 mb-5 space-y-3">
-                <h3 class="text-xs font-bold text-slate-800">ADMIN SIGN IN</h3>
-                <input id="admin-email" type="email" autocomplete="username" placeholder="Admin email" class="w-full glass-input rounded-xl p-2.5 text-xs">
-                <input id="admin-password" type="password" autocomplete="current-password" placeholder="Password" class="w-full glass-input rounded-xl p-2.5 text-xs">
-                <button id="admin-login-btn" type="button" class="w-full py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold">Sign in securely</button>
-                <button id="admin-logout-btn" type="button" class="hidden text-xs text-red-600 font-bold">Sign out</button>
-                <p id="admin-auth-status" class="text-[11px] text-slate-500">Admin access is restricted to assigned Supabase administrators.</p>
-            </div>
-            <!-- Add Product Form -->
-            <form id="add-product-form" class="space-y-3 p-4 rounded-2xl bg-slate-50 border border-slate-200 mb-6">
-                <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Add New Product</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <input type="text" id="new-prod-name" required placeholder="Product Title" class="glass-input rounded-xl p-2.5 text-xs">
-                    <select id="new-prod-cat" required class="glass-input rounded-xl p-2.5 text-xs">
-                        
-                    </select>
-                    <input type="number" id="new-prod-price" required placeholder="Price in BDT (৳)" class="glass-input rounded-xl p-2.5 text-xs">
-                    <input type="text" id="new-prod-tag" placeholder="Tag (e.g., Best Seller)" class="glass-input rounded-xl p-2.5 text-xs">
-                    <input type="number" id="new-prod-stock" min="0" value="10" placeholder="Stock quantity" class="glass-input rounded-xl p-2.5 text-xs">
-                    <input type="file" id="new-prod-image" accept="image/png,image/jpeg,image/webp,image/avif" class="glass-input rounded-xl p-2.5 text-xs">
-                </div>
-                <textarea id="new-prod-desc" required placeholder="Product Description" rows="2" class="w-full glass-input rounded-xl p-2.5 text-xs"></textarea>
-                <button type="submit" class="w-full py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition">
-                    + Add Product to Database
-                </button>
-            </form>
-
-            <div class="space-y-2">
-                <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Current Inventory</h3>
-                <div id="admin-inventory-list" class="space-y-2 max-h-60 overflow-y-auto pr-1">
-                    <!-- Injected via JS -->
-                </div>
-            </div>
+    <!-- Full Supabase Admin Dashboard -->
+    <div id="admin-modal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-md hidden overflow-y-auto">
+      <div class="min-h-screen w-full p-2 sm:p-4 flex items-start justify-center">
+        <div class="w-full max-w-7xl min-h-[92vh] rounded-3xl bg-slate-50 shadow-2xl overflow-hidden border border-white/50">
+          <header class="bg-slate-950 text-white px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
+            <div><div class="text-[10px] tracking-[.25em] uppercase text-amber-400 font-bold">ADMIN STORE</div><h2 class="text-lg sm:text-xl font-extrabold">Store Control Center</h2><p id="admin-auth-status" class="text-[11px] text-slate-300 mt-1">Secure Supabase administration</p></div>
+            <div class="flex items-center gap-2"><button id="admin-logout-btn" class="hidden px-3 py-2 rounded-xl bg-white/10 text-xs font-bold hover:bg-white/20">Sign out</button><button id="close-admin-btn" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20"><i class="fa-solid fa-xmark"></i></button></div>
+          </header>
+          <section id="admin-login-box" class="max-w-md mx-auto my-12 p-6 sm:p-8 bg-white rounded-3xl shadow-xl border border-slate-200">
+            <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl mb-4"><i class="fa-solid fa-shield-halved"></i></div>
+            <h3 class="text-xl font-extrabold text-slate-900">Admin sign in</h3><p class="text-xs text-slate-500 mt-1 mb-5">Sign in with the administrator account assigned in Supabase.</p>
+            <label class="text-xs font-bold text-slate-600">Email</label><input id="admin-email" type="email" autocomplete="username" placeholder="Admin email" class="w-full glass-input rounded-xl p-3 text-sm my-2">
+            <label class="text-xs font-bold text-slate-600">Password</label><input id="admin-password" type="password" autocomplete="current-password" placeholder="Password" class="w-full glass-input rounded-xl p-3 text-sm my-2">
+            <button id="admin-login-btn" type="button" class="w-full py-3 mt-3 bg-slate-950 text-white rounded-xl text-sm font-bold hover:bg-slate-800">Sign in securely</button>
+            <p id="admin-login-error" class="text-xs text-red-600 mt-3"></p>
+          </section>
+          <div id="admin-app" class="hidden md:flex min-h-[82vh]">
+            <aside class="hidden md:flex w-56 shrink-0 bg-white border-r border-slate-200 p-3 flex-col gap-1">
+              <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold px-3 py-3">Management</div>
+              <button data-admin-tab="overview" class="admin-nav text-left px-3 py-3 rounded-xl text-sm font-bold bg-slate-950 text-white"><i class="fa-solid fa-chart-pie w-6"></i> Overview</button>
+              <button data-admin-tab="orders" class="admin-nav text-left px-3 py-3 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-100"><i class="fa-solid fa-receipt w-6"></i> Orders</button>
+              <button data-admin-tab="products" class="admin-nav text-left px-3 py-3 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-100"><i class="fa-solid fa-box w-6"></i> Products</button>
+              <button data-admin-tab="categories" class="admin-nav text-left px-3 py-3 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-100"><i class="fa-solid fa-layer-group w-6"></i> Categories</button>
+              <button data-admin-tab="customers" class="admin-nav text-left px-3 py-3 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-100"><i class="fa-solid fa-users w-6"></i> Customers</button>
+              <button data-admin-tab="settings" class="admin-nav text-left px-3 py-3 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-100"><i class="fa-solid fa-gear w-6"></i> Store Settings</button>
+              <div class="mt-auto p-3 rounded-xl bg-slate-50 text-[10px] text-slate-500">Live database · Supabase</div>
+            </aside>
+            <main class="flex-1 min-w-0 p-3 sm:p-6">
+              <div class="md:hidden flex gap-2 overflow-x-auto pb-3 mb-3">
+                <button data-admin-tab="overview" class="admin-nav whitespace-nowrap px-3 py-2 rounded-lg bg-slate-950 text-white text-xs font-bold">Overview</button>
+                <button data-admin-tab="orders" class="admin-nav whitespace-nowrap px-3 py-2 rounded-lg bg-white text-slate-600 text-xs font-bold">Orders</button>
+                <button data-admin-tab="products" class="admin-nav whitespace-nowrap px-3 py-2 rounded-lg bg-white text-slate-600 text-xs font-bold">Products</button>
+                <button data-admin-tab="categories" class="admin-nav whitespace-nowrap px-3 py-2 rounded-lg bg-white text-slate-600 text-xs font-bold">Categories</button>
+                <button data-admin-tab="customers" class="admin-nav whitespace-nowrap px-3 py-2 rounded-lg bg-white text-slate-600 text-xs font-bold">Customers</button>
+                <button data-admin-tab="settings" class="admin-nav whitespace-nowrap px-3 py-2 rounded-lg bg-white text-slate-600 text-xs font-bold">Settings</button>
+              </div>
+              <div id="admin-content"><div class="p-8 text-center text-slate-500">Loading dashboard…</div></div>
+            </main>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- JavaScript Application Logic -->
@@ -591,13 +587,13 @@ const SUPABASE_ANON_KEY='sb_publishable_AnQgBvVotdD7hI3r6V7OEQ_IUZ3-7K7';
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 const ICONS=['fa-heart','fa-broom','fa-bag-shopping','fa-mobile-screen-button','fa-couch','fa-kitchen-set','fa-tags'];
 let categories=[],products=[],cart=JSON.parse(localStorage.getItem('nivo_cart')||'[]'),wishlist=JSON.parse(localStorage.getItem('nivo_wishlist')||'[]');
-let currentCategory='all',searchQuery='',currentSort='featured',adminUser=null;
+let currentCategory='all',searchQuery='',currentSort='featured',adminUser=null,storeSettings={};
 const money=n=>'৳ '+Number(n||0).toLocaleString('en-BD');
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function toast(m,type='info'){const c=document.getElementById('toast-container'),d=document.createElement('div');d.className='glass-panel px-4 py-3 rounded-xl border text-xs font-bold text-slate-900 shadow-lg bg-white mb-2';d.textContent=m;c.appendChild(d);setTimeout(()=>d.remove(),3200)}
 async function loadStore(){
- const [cr,pr]=await Promise.all([db.from('categories').select('id,name,slug').eq('is_active',true).order('sort_order'),db.from('products').select('id,name,description,price,compare_at_price,stock,category_id,images,is_featured').eq('is_active',true).order('created_at',{ascending:false})]);
- if(cr.error) throw cr.error;if(pr.error) throw pr.error;
+ const [cr,pr,sr]=await Promise.all([db.from('categories').select('id,name,slug').eq('is_active',true).order('sort_order'),db.from('products').select('id,name,description,price,compare_at_price,stock,category_id,images,is_featured').eq('is_active',true).order('created_at',{ascending:false}),db.from('store_settings').select('key,value')]);
+ if(cr.error) throw cr.error;if(pr.error) throw pr.error;if(sr.error) throw sr.error;storeSettings={};(sr.data||[]).forEach(x=>{let v=x.value;try{if(typeof v==='string')v=JSON.parse(v)}catch(e){}storeSettings[x.key]=v});
  categories=cr.data||[];products=(pr.data||[]).map(p=>({...p,categoryName:categories.find(c=>c.id===p.category_id)?.name||'Products',image:p.images?.[0]||'',rating:5,reviews:'',tag:p.is_featured?'Featured':'',oldPrice:p.compare_at_price||null,desc:p.description||''}));
  renderCategories();renderProducts();renderRecommendations();updateCartUI();updateWishlistUI();
 }
@@ -613,15 +609,162 @@ function updateCartUI(){const n=cart.reduce((s,x)=>s+x.qty,0),sum=cart.reduce((s
 window.updateQty=(id,d)=>{const x=cart.find(x=>x.id===id);if(x)x.qty+=d;cart=cart.filter(x=>x.qty>0);saveCart();updateCartUI()};window.removeFromCart=id=>{cart=cart.filter(x=>x.id!==id);saveCart();updateCartUI()};
 const drawer=document.getElementById('cart-drawer'),panel=document.getElementById('cart-panel');function openCartDrawer(){drawer.classList.remove('pointer-events-none','opacity-0');panel.classList.remove('translate-x-full')}function closeCartDrawer(){panel.classList.add('translate-x-full');drawer.classList.add('opacity-0','pointer-events-none')}
 function openCheckoutModal(){if(!cart.length)return toast('Cart is empty','error');closeCartDrawer();updateCheckoutSummary();document.getElementById('checkout-modal').classList.remove('hidden')}
-function updateCheckoutSummary(){let sub=cart.reduce((s,x)=>s+x.price*x.qty,0),zone=document.querySelector('input[name="shipping_location"]:checked').value,fee=zone==='outside'?120:60;document.getElementById('checkout-subtotal').textContent=money(sub);document.getElementById('checkout-shipping').textContent=money(fee);document.getElementById('checkout-total').textContent=money(sub+fee)}
-function setAdminState(user){adminUser=user;document.getElementById('admin-login-box').querySelector('#admin-email').disabled=!!user;document.getElementById('admin-password').classList.toggle('hidden',!!user);document.getElementById('admin-login-btn').classList.toggle('hidden',!!user);document.getElementById('admin-logout-btn').classList.toggle('hidden',!user);document.getElementById('add-product-form').classList.toggle('hidden',!user);document.getElementById('admin-auth-status').textContent=user?`Signed in as ${user.email}`:'Admin access is restricted to assigned Supabase administrators.'}
-async function checkAdmin(){const {data:{user}}=await db.auth.getUser();if(!user){setAdminState(null);return false}const {data,error}=await db.from('profiles').select('role').eq('id',user.id).single();if(error||!['admin','owner','manager'].includes(data?.role)){await db.auth.signOut();setAdminState(null);toast('Admin access not assigned','error');return false}setAdminState(user);return true}
-async function openAdminModal(){document.getElementById('admin-modal').classList.remove('hidden');if(await checkAdmin())renderAdminInventory();}
-async function renderAdminInventory(){if(!adminUser)return;const {data,error}=await db.from('products').select('id,name,price,stock').order('created_at',{ascending:false});if(error)return toast(error.message,'error');document.getElementById('admin-inventory-list').innerHTML=(data||[]).map(p=>`<div class="flex items-center justify-between p-2.5 bg-white rounded-xl border text-xs"><span class="font-bold truncate max-w-[160px]">${esc(p.name)} · ${p.stock} pcs</span><b>${money(p.price)}</b><button onclick="deleteProduct('${p.id}')" class="text-red-500 px-2">Delete</button></div>`).join('')||'<p class="text-xs text-slate-500">No products yet.</p>'}
-window.deleteProduct=async id=>{if(!adminUser||!confirm('Delete this product?'))return;const {error}=await db.from('products').delete().eq('id',id);if(error)return toast(error.message,'error');await loadStore();renderAdminInventory();toast('Product deleted')};
-async function addProduct(e){e.preventDefault();if(!adminUser)return toast('Admin login required','error');const name=document.getElementById('new-prod-name').value.trim(),price=Number(document.getElementById('new-prod-price').value),category_id=document.getElementById('new-prod-cat').value,desc=document.getElementById('new-prod-desc').value,stock=Number(document.getElementById('new-prod-stock').value||0),file=document.getElementById('new-prod-image').files[0];if(!category_id)return toast('Select a category','error');let images=[];if(file){const ext=file.name.split('.').pop().toLowerCase(),path=`${crypto.randomUUID()}.${ext}`;const {error:upErr}=await db.storage.from('product-images').upload(path,file,{upsert:false,contentType:file.type});if(upErr)return toast(upErr.message,'error');images=[db.storage.from('product-images').getPublicUrl(path).data.publicUrl]}const slug=name.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')+'-'+Date.now();const {error}=await db.from('products').insert({name,slug,description:desc,price,stock,category_id,images,is_active:true,is_featured:false});if(error)return toast(error.message,'error');e.target.reset();await loadStore();renderAdminInventory();toast('Product saved to Supabase')}
+function updateCheckoutSummary(){let sub=cart.reduce((s,x)=>s+x.price*x.qty,0),zone=document.querySelector('input[name="shipping_location"]:checked').value,fee=zone==='outside'?Number(storeSettings.delivery_outside_dhaka||120):Number(storeSettings.delivery_inside_dhaka||60);document.getElementById('checkout-subtotal').textContent=money(sub);document.getElementById('checkout-shipping').textContent=money(fee);document.getElementById('checkout-total').textContent=money(sub+fee)}
+
+function setAdminState(user){
+ adminUser=user;
+ document.getElementById('admin-login-box').classList.toggle('hidden',!!user);
+ document.getElementById('admin-app').classList.toggle('hidden',!user);
+ document.getElementById('admin-app').classList.toggle('md:flex',!!user);
+ document.getElementById('admin-logout-btn').classList.toggle('hidden',!user);
+ document.getElementById('admin-auth-status').textContent=user?'Signed in: '+(user.email||'Administrator'):'Secure Supabase administration';
+}
+async function checkAdmin(){
+ const {data:{user},error:userError}=await db.auth.getUser();
+ if(userError||!user){setAdminState(null);return false}
+ const {data,error}=await db.from('profiles').select('role,full_name').eq('id',user.id).maybeSingle();
+ if(error||data?.role!=='admin'){
+  await db.auth.signOut();setAdminState(null);
+  document.getElementById('admin-login-error').textContent=error?error.message:'This account is not assigned as an administrator.';
+  return false;
+ }
+ setAdminState(user);return true;
+}
+async function openAdminModal(){
+ document.getElementById('admin-modal').classList.remove('hidden');
+ document.getElementById('admin-login-error').textContent='';
+ if(await checkAdmin()) await adminNavigate('overview');
+}
+window.adminNavigate=async function(tab){
+ document.querySelectorAll('.admin-nav').forEach(b=>{
+  const active=b.dataset.adminTab===tab;
+  b.classList.toggle('bg-slate-950',active);b.classList.toggle('text-white',active);
+  b.classList.toggle('bg-white',!active);b.classList.toggle('text-slate-600',!active);
+ });
+ const root=document.getElementById('admin-content');
+ root.innerHTML='<div class="p-10 text-center text-slate-500"><i class="fa-solid fa-spinner fa-spin mr-2"></i>Loading '+esc(tab)+'…</div>';
+ try{
+  if(tab==='overview') await adminRenderOverview();
+  if(tab==='orders') await adminRenderOrders();
+  if(tab==='products') await adminRenderProducts();
+  if(tab==='categories') await adminRenderCategories();
+  if(tab==='customers') await adminRenderCustomers();
+  if(tab==='settings') await adminRenderSettings();
+ }catch(e){root.innerHTML='<div class="p-5 rounded-2xl bg-red-50 text-red-700 text-sm">'+esc(e.message)+'</div>'}
+};
+async function adminRenderOverview(){
+ const [orders,products,categories]=await Promise.all([
+  db.from('orders').select('id,total,status,created_at').order('created_at',{ascending:false}),
+  db.from('products').select('id,stock,is_active'),
+  db.from('categories').select('id,is_active')
+ ]);
+ if(orders.error)throw orders.error;if(products.error)throw products.error;if(categories.error)throw categories.error;
+ const all=orders.data||[], total=all.reduce((s,o)=>s+Number(o.total||0),0), pending=all.filter(o=>['pending','on_hold','scheduled'].includes(o.status)).length;
+ const card=(label,value,icon)=>'<div class="bg-white border border-slate-200 rounded-2xl p-4"><div class="flex justify-between text-slate-500 text-xs font-bold"><span>'+label+'</span><i class="fa-solid '+icon+' text-amber-600"></i></div><div class="text-2xl font-black text-slate-900 mt-3">'+value+'</div></div>';
+ document.getElementById('admin-content').innerHTML='<div class="flex items-center justify-between mb-5"><div><h2 class="text-2xl font-extrabold text-slate-900">Overview</h2><p class="text-xs text-slate-500 mt-1">Live store performance from Supabase</p></div><button onclick="adminNavigate(\'orders\')" class="px-4 py-2 rounded-xl bg-slate-950 text-white text-xs font-bold">Manage Orders</button></div><div class="grid grid-cols-2 xl:grid-cols-4 gap-3">'+card('Total Orders',all.length,'fa-receipt')+card('Order Revenue','৳ '+total.toLocaleString('en-BD'),'fa-wallet')+card('Pending Orders',pending,'fa-clock')+card('Active Products',(products.data||[]).filter(p=>p.is_active).length,'fa-box')+'</div><div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5"><section class="bg-white rounded-2xl border border-slate-200 p-4"><h3 class="font-extrabold mb-3">Recent Orders</h3><div class="space-y-2">'+all.slice(0,6).map(o=>'<div class="flex justify-between gap-3 border-b border-slate-100 pb-2 text-xs"><span class="font-bold">'+esc(o.id.slice(0,8).toUpperCase())+' · '+esc(o.status)+'</span><span>৳ '+Number(o.total).toLocaleString('en-BD')+'</span></div>').join('')+'</div></section><section class="bg-white rounded-2xl border border-slate-200 p-4"><h3 class="font-extrabold mb-3">Store Snapshot</h3><div class="text-sm text-slate-600 space-y-3"><p>Products: <b>'+(products.data||[]).length+'</b></p><p>Categories: <b>'+(categories.data||[]).filter(c=>c.is_active).length+'</b></p><p>Orders: <b>'+all.length+'</b></p><p>Inventory units: <b>'+(products.data||[]).reduce((s,p)=>s+Number(p.stock||0),0)+'</b></p></div></section></div>';
+}
+async function adminRenderOrders(){
+ const {data,error}=await db.from('orders').select('*').order('created_at',{ascending:false}).limit(150);if(error)throw error;
+ const rows=data||[];
+ const statuses=['pending','confirmed','processing','shipped','delivered','scheduled','cancelled','on_hold'];
+ const payments=['unpaid','pending','paid','failed'];
+ document.getElementById('admin-content').innerHTML='<div class="mb-4"><h2 class="text-2xl font-extrabold">Orders</h2><p class="text-xs text-slate-500 mt-1">Review customer details and update order/payment status</p></div><div class="bg-white border border-slate-200 rounded-2xl overflow-x-auto"><table class="w-full text-left text-xs min-w-[850px]"><thead class="bg-slate-100 text-slate-500"><tr><th class="p-3">Order</th><th class="p-3">Customer</th><th class="p-3">Address</th><th class="p-3">Total</th><th class="p-3">Order status</th><th class="p-3">Payment</th><th class="p-3">Action</th></tr></thead><tbody>'+(rows.map(o=>'<tr class="border-t border-slate-100 align-top"><td class="p-3 font-bold">'+esc(o.order_number||o.id.slice(0,8))+'<div class="text-[10px] text-slate-400 mt-1">'+new Date(o.created_at).toLocaleString()+'</div></td><td class="p-3">'+esc(o.customer_name)+'<div class="text-slate-500 mt-1">'+esc(o.phone)+'</div></td><td class="p-3 max-w-[180px]">'+esc([o.address,o.thana,o.district,o.division].filter(Boolean).join(', '))+'</td><td class="p-3 font-extrabold">৳ '+Number(o.total).toLocaleString('en-BD')+'</td><td class="p-3"><select id="os-'+o.id+'" class="glass-input rounded-lg p-2">'+statuses.map(s=>'<option value="'+s+'" '+(s===o.status?'selected':'')+'>'+s.replace('_',' ')+'</option>').join('')+'</select></td><td class="p-3"><select id="ps-'+o.id+'" class="glass-input rounded-lg p-2">'+payments.map(s=>'<option value="'+s+'" '+(s===o.payment_status?'selected':'')+'>'+s+'</option>').join('')+'</select><div class="text-[10px] text-slate-400 mt-1">'+esc(o.payment_method||'')+'</div></td><td class="p-3"><button onclick="adminUpdateOrder(\''+o.id+'\')" class="px-3 py-2 bg-slate-950 text-white rounded-lg font-bold">Save</button><button onclick="adminShowOrderItems(\''+o.id+'\')" class="block mt-2 text-amber-700 font-bold">Items</button></td></tr><tr id="oi-'+o.id+'" class="hidden bg-slate-50"><td colspan="7" class="p-3 text-slate-600 text-xs">Loading items…</td></tr>').join(''))+'</tbody></table>'+(rows.length?'':'<p class="p-8 text-center text-slate-500">No orders yet.</p>')+'</div>';
+}
+window.adminUpdateOrder=async function(id){
+ const status=document.getElementById('os-'+id).value,payment_status=document.getElementById('ps-'+id).value;
+ const {error}=await db.from('orders').update({status,payment_status}).eq('id',id);if(error)return toast(error.message,'error');
+ toast('Order updated successfully','success');
+};
+window.adminShowOrderItems=async function(id){
+ const row=document.getElementById('oi-'+id);row.classList.toggle('hidden');if(row.dataset.loaded)return;
+ const {data,error}=await db.from('order_items').select('product_name,unit_price,quantity,line_total').eq('order_id',id);
+ if(error){row.innerHTML='<td colspan="7" class="p-3 text-red-600">'+esc(error.message)+'</td>';return}
+ row.innerHTML='<td colspan="7" class="p-3"><div class="flex flex-wrap gap-3">'+(data||[]).map(x=>'<div class="bg-white border rounded-xl p-3">'+esc(x.product_name)+' · '+x.quantity+' × ৳'+Number(x.unit_price).toLocaleString('en-BD')+' = ৳'+Number(x.line_total).toLocaleString('en-BD')+'</div>').join('')+'</div></td>';row.dataset.loaded='1';
+};
+async function adminRenderProducts(){
+ const [pr,cr]=await Promise.all([db.from('products').select('*').order('created_at',{ascending:false}),db.from('categories').select('id,name').eq('is_active',true).order('sort_order')]);
+ if(pr.error)throw pr.error;if(cr.error)throw cr.error;
+ const list=pr.data||[], cats=cr.data||[];
+ document.getElementById('admin-content').innerHTML='<div class="mb-4"><h2 class="text-2xl font-extrabold">Products</h2><p class="text-xs text-slate-500 mt-1">Add, edit, archive products and upload multiple images</p></div><div class="grid grid-cols-1 xl:grid-cols-[minmax(280px,380px)_1fr] gap-4"><form id="admin-product-form" class="bg-white border border-slate-200 rounded-2xl p-4 space-y-3"><h3 id="product-form-title" class="font-extrabold">Add product</h3><input id="ap-id" type="hidden"><input id="ap-name" required placeholder="Product name" class="glass-input w-full rounded-xl p-3 text-sm"><textarea id="ap-desc" placeholder="Description" rows="3" class="glass-input w-full rounded-xl p-3 text-sm"></textarea><div class="grid grid-cols-2 gap-2"><input id="ap-price" type="number" min="0" step="0.01" required placeholder="Price ৳" class="glass-input rounded-xl p-3 text-sm"><input id="ap-compare" type="number" min="0" step="0.01" placeholder="Compare price" class="glass-input rounded-xl p-3 text-sm"><input id="ap-stock" type="number" min="0" required value="0" placeholder="Stock" class="glass-input rounded-xl p-3 text-sm"><input id="ap-sku" placeholder="SKU (optional)" class="glass-input rounded-xl p-3 text-sm"></div><select id="ap-category" required class="glass-input w-full rounded-xl p-3 text-sm"><option value="">Choose category</option>'+cats.map(c=>'<option value="'+c.id+'">'+esc(c.name)+'</option>').join('')+'</select><label class="block text-xs font-bold text-slate-600">Product photos (select multiple)</label><input id="ap-images" type="file" multiple accept="image/png,image/jpeg,image/webp,image/avif" class="w-full text-xs"><div id="ap-current-images" class="text-[11px] text-slate-500">No existing images</div><label class="flex items-center gap-2 text-xs"><input id="ap-featured" type="checkbox"> Featured product</label><label class="flex items-center gap-2 text-xs"><input id="ap-active" type="checkbox" checked> Visible in storefront</label><div class="flex gap-2"><button class="flex-1 bg-slate-950 text-white rounded-xl py-3 text-xs font-bold">Save product</button><button type="button" onclick="adminResetProduct()" class="px-4 border rounded-xl text-xs font-bold">Reset</button></div><p id="ap-error" class="text-xs text-red-600"></p></form><div class="bg-white border border-slate-200 rounded-2xl p-4"><div class="flex justify-between items-center mb-3"><h3 class="font-extrabold">Inventory ('+list.length+')</h3><button onclick="adminNavigate(\'products\')" class="text-xs text-amber-700 font-bold">Refresh</button></div><div class="space-y-2">'+list.map(p=>'<div class="border border-slate-100 rounded-xl p-3 flex flex-wrap items-center gap-3"><div class="w-12 h-12 rounded-lg bg-slate-100 overflow-hidden flex items-center justify-center">'+(p.images&&p.images[0]?'<img src="'+esc(p.images[0])+'" class="w-full h-full object-cover">':'<i class="fa-solid fa-box text-slate-400"></i>')+'</div><div class="flex-1 min-w-[130px]"><div class="font-bold text-xs">'+esc(p.name)+'</div><div class="text-[10px] text-slate-500">৳ '+Number(p.price).toLocaleString('en-BD')+' · Stock '+p.stock+' · '+(p.is_active?'Active':'Archived')+'</div></div><button onclick="adminEditProduct(\''+p.id+'\')" class="px-3 py-2 rounded-lg bg-slate-100 text-xs font-bold">Edit</button><button onclick="adminArchiveProduct(\''+p.id+'\')" class="px-3 py-2 rounded-lg bg-red-50 text-red-600 text-xs font-bold">'+(p.is_active?'Archive':'Restore')+'</button></div>').join('')+'</div></div></div>';
+ document.getElementById('admin-product-form').addEventListener('submit',adminSaveProduct);
+ window._adminProducts=list;
+}
+window.adminResetProduct=function(){
+ const f=document.getElementById('admin-product-form');if(f)f.reset();
+ document.getElementById('ap-id').value='';document.getElementById('ap-current-images').textContent='No existing images';document.getElementById('product-form-title').textContent='Add product';document.getElementById('ap-active').checked=true;
+};
+window.adminEditProduct=function(id){
+ const p=(window._adminProducts||[]).find(x=>x.id===id);if(!p)return;
+ document.getElementById('ap-id').value=p.id;document.getElementById('ap-name').value=p.name;document.getElementById('ap-desc').value=p.description||'';
+ document.getElementById('ap-price').value=p.price;document.getElementById('ap-compare').value=p.compare_at_price||'';document.getElementById('ap-stock').value=p.stock;
+ document.getElementById('ap-sku').value=p.sku||'';document.getElementById('ap-category').value=p.category_id||'';
+ document.getElementById('ap-featured').checked=!!p.is_featured;document.getElementById('ap-active').checked=!!p.is_active;
+ document.getElementById('ap-current-images').textContent=(p.images||[]).length+' image(s) already saved. New uploads will be added.';
+ document.getElementById('product-form-title').textContent='Edit product';document.getElementById('ap-error').textContent='';
+ document.getElementById('admin-product-form').scrollIntoView({behavior:'smooth',block:'start'});
+};
+async function adminSaveProduct(e){
+ e.preventDefault();const err=document.getElementById('ap-error');err.textContent='Saving…';
+ try{
+  const id=document.getElementById('ap-id').value, name=document.getElementById('ap-name').value.trim(), files=Array.from(document.getElementById('ap-images').files||[]);
+  let images=id?(((window._adminProducts||[]).find(p=>p.id===id)||{}).images||[]):[];
+  for(const file of files){
+   const ext=(file.name.split('.').pop()||'jpg').toLowerCase(),path='products/'+crypto.randomUUID()+'.'+ext;
+   const {error:uploadError}=await db.storage.from('product-images').upload(path,file,{upsert:false,contentType:file.type});
+   if(uploadError)throw uploadError;
+   images.push(db.storage.from('product-images').getPublicUrl(path).data.publicUrl);
+  }
+  const payload={name,slug:name.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')+'-'+Date.now(),description:document.getElementById('ap-desc').value.trim(),price:Number(document.getElementById('ap-price').value),compare_at_price:document.getElementById('ap-compare').value?Number(document.getElementById('ap-compare').value):null,stock:Number(document.getElementById('ap-stock').value),sku:document.getElementById('ap-sku').value.trim()||null,category_id:document.getElementById('ap-category').value,images,is_featured:document.getElementById('ap-featured').checked,is_active:document.getElementById('ap-active').checked,updated_at:new Date().toISOString()};
+  const result=id?await db.from('products').update(payload).eq('id',id):await db.from('products').insert(payload);
+  if(result.error)throw result.error;
+  await loadStore();toast(id?'Product updated':'Product added','success');await adminRenderProducts();
+ }catch(ex){err.textContent=ex.message;toast(ex.message,'error')}
+}
+window.adminArchiveProduct=async function(id){
+ const p=(window._adminProducts||[]).find(x=>x.id===id);if(!p)return;
+ const {error}=await db.from('products').update({is_active:!p.is_active,updated_at:new Date().toISOString()}).eq('id',id);
+ if(error)return toast(error.message,'error');await loadStore();await adminRenderProducts();toast(p.is_active?'Product archived':'Product restored','success');
+};
+async function adminRenderCategories(){
+ const {data,error}=await db.from('categories').select('*').order('sort_order');if(error)throw error;
+ const rows=data||[];
+ document.getElementById('admin-content').innerHTML='<div class="mb-4"><h2 class="text-2xl font-extrabold">Categories</h2><p class="text-xs text-slate-500 mt-1">Create and organize the storefront categories</p></div><div class="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-4"><form id="admin-category-form" class="bg-white border rounded-2xl p-4 space-y-3"><h3 id="cat-form-title" class="font-extrabold">Add category</h3><input id="ac-id" type="hidden"><input id="ac-name" required placeholder="Category name" class="glass-input w-full rounded-xl p-3 text-sm"><input id="ac-slug" required placeholder="category-slug" class="glass-input w-full rounded-xl p-3 text-sm"><input id="ac-order" type="number" value="10" placeholder="Sort order" class="glass-input w-full rounded-xl p-3 text-sm"><button class="w-full bg-slate-950 text-white rounded-xl py-3 text-xs font-bold">Save category</button><button type="button" onclick="adminResetCategory()" class="w-full border rounded-xl py-3 text-xs font-bold">Reset</button></form><div class="bg-white border rounded-2xl p-4 space-y-2">'+rows.map(c=>'<div class="flex items-center gap-3 border rounded-xl p-3"><div class="flex-1"><b class="text-sm">'+esc(c.name)+'</b><div class="text-[10px] text-slate-500">'+esc(c.slug)+' · Order '+c.sort_order+' · '+(c.is_active?'Active':'Hidden')+'</div></div><button onclick="adminEditCategory(\''+c.id+'\')" class="text-xs font-bold bg-slate-100 rounded-lg px-3 py-2">Edit</button><button onclick="adminToggleCategory(\''+c.id+'\')" class="text-xs font-bold bg-amber-50 text-amber-800 rounded-lg px-3 py-2">'+(c.is_active?'Hide':'Show')+'</button></div>').join('')+'</div></div>';
+ window._adminCategories=rows;document.getElementById('admin-category-form').addEventListener('submit',adminSaveCategory);
+}
+window.adminResetCategory=function(){document.getElementById('admin-category-form').reset();document.getElementById('ac-id').value='';document.getElementById('cat-form-title').textContent='Add category'};
+window.adminEditCategory=function(id){const c=(window._adminCategories||[]).find(x=>x.id===id);if(!c)return;document.getElementById('ac-id').value=c.id;document.getElementById('ac-name').value=c.name;document.getElementById('ac-slug').value=c.slug;document.getElementById('ac-order').value=c.sort_order;document.getElementById('cat-form-title').textContent='Edit category'};
+async function adminSaveCategory(e){e.preventDefault();const id=document.getElementById('ac-id').value,p={name:document.getElementById('ac-name').value.trim(),slug:document.getElementById('ac-slug').value.trim().toLowerCase().replace(/[^a-z0-9-]/g,'-'),sort_order:Number(document.getElementById('ac-order').value||0),is_active:true};const r=id?await db.from('categories').update(p).eq('id',id):await db.from('categories').insert(p);if(r.error)return toast(r.error.message,'error');await loadStore();await adminRenderCategories();toast('Category saved','success')}
+window.adminToggleCategory=async function(id){const c=(window._adminCategories||[]).find(x=>x.id===id);if(!c)return;const {error}=await db.from('categories').update({is_active:!c.is_active}).eq('id',id);if(error)return toast(error.message,'error');await loadStore();await adminRenderCategories();toast('Category visibility updated','success')};
+async function adminRenderCustomers(){
+ const {data,error}=await db.from('orders').select('customer_name,phone,email,address,district,created_at,total').order('created_at',{ascending:false}).limit(1000);if(error)throw error;
+ const map={};(data||[]).forEach(o=>{const k=o.phone||o.email||o.customer_name;if(!map[k])map[k]={...o,count:0,spent:0};map[k].count++;map[k].spent+=Number(o.total||0)});
+ const list=Object.values(map);
+ document.getElementById('admin-content').innerHTML='<div class="mb-4"><h2 class="text-2xl font-extrabold">Customers</h2><p class="text-xs text-slate-500 mt-1">Customer directory compiled from actual orders</p></div><div class="bg-white border rounded-2xl overflow-x-auto"><table class="w-full min-w-[650px] text-xs text-left"><thead class="bg-slate-100"><tr><th class="p-3">Customer</th><th class="p-3">Phone</th><th class="p-3">Location</th><th class="p-3">Orders</th><th class="p-3">Total spent</th></tr></thead><tbody>'+list.map(c=>'<tr class="border-t"><td class="p-3 font-bold">'+esc(c.customer_name)+'</td><td class="p-3">'+esc(c.phone)+'</td><td class="p-3">'+esc([c.address,c.district].filter(Boolean).join(', '))+'</td><td class="p-3">'+c.count+'</td><td class="p-3 font-bold">৳ '+c.spent.toLocaleString('en-BD')+'</td></tr>').join('')+'</tbody></table>'+(list.length?'':'<p class="p-8 text-center text-slate-500">No customer orders yet.</p>')+'</div>';
+}
+async function adminRenderSettings(){
+ const {data,error}=await db.from('store_settings').select('key,value').order('key');if(error)throw error;
+ const vals={};(data||[]).forEach(x=>{let v=x.value;try{if(typeof v==='string')v=JSON.parse(v)}catch(e){}vals[x.key]=v});
+ const val=k=>typeof vals[k]==='object'?JSON.stringify(vals[k]):(vals[k]??'');
+ document.getElementById('admin-content').innerHTML='<div class="mb-4"><h2 class="text-2xl font-extrabold">Store Settings</h2><p class="text-xs text-slate-500 mt-1">Changes are saved to Supabase and shared across devices</p></div><form id="admin-settings-form" class="bg-white border rounded-2xl p-4 sm:p-6 max-w-3xl space-y-4"><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><label class="text-xs font-bold">Store name<input id="st-name" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(vals.store?.name||'ADMIN STORE')+'"></label><label class="text-xs font-bold">Tagline<input id="st-tagline" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(vals.store?.tagline||'')+'"></label><label class="text-xs font-bold">Inside Dhaka delivery ৳<input id="st-inside" type="number" min="0" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(val('delivery_inside_dhaka'))+'"></label><label class="text-xs font-bold">Outside Dhaka delivery ৳<input id="st-outside" type="number" min="0" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(val('delivery_outside_dhaka'))+'"></label><label class="text-xs font-bold">bKash number<input id="st-bkash" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(val('bkash_number'))+'"></label><label class="text-xs font-bold">Nagad number<input id="st-nagad" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(val('nagad_number'))+'"></label><label class="text-xs font-bold sm:col-span-2">Store banner<input id="st-banner" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(val('store_banner'))+'"></label><label class="text-xs font-bold sm:col-span-2">Store notice<input id="st-notice" class="glass-input block w-full rounded-xl p-3 mt-2 font-normal" value="'+esc(val('store_notice'))+'"></label></div><button class="px-6 py-3 bg-slate-950 text-white rounded-xl text-xs font-bold">Save settings</button><p class="text-[11px] text-slate-500">Note: payment numbers are stored as settings; automatic payment gateway collection is not enabled.</p></form>';
+ document.getElementById('admin-settings-form').addEventListener('submit',adminSaveSettings);
+}
+async function adminSaveSettings(e){
+ e.preventDefault();
+ const values={
+  store:{name:document.getElementById('st-name').value.trim(),tagline:document.getElementById('st-tagline').value.trim(),currency:'BDT',language:'bn-en'},
+  delivery_inside_dhaka:Number(document.getElementById('st-inside').value||0),
+  delivery_outside_dhaka:Number(document.getElementById('st-outside').value||0),
+  bkash_number:document.getElementById('st-bkash').value.trim(),
+  nagad_number:document.getElementById('st-nagad').value.trim(),
+  store_banner:document.getElementById('st-banner').value.trim(),
+  store_notice:document.getElementById('st-notice').value.trim()
+ };
+ const rows=Object.keys(values).map(key=>({key,value:values[key]}));
+ const {error}=await db.from('store_settings').upsert(rows,{onConflict:'key'});if(error)return toast(error.message,'error');
+ storeSettings=Object.assign(storeSettings||{},values);toast('Store settings saved','success');
+}
 async function submitOrder(e){e.preventDefault();if(!cart.length)return;const zone=document.querySelector('input[name="shipping_location"]:checked').value==='outside'?'outside_dhaka':'inside_dhaka',method=document.querySelector('input[name="payment_method"]:checked').value,reference=document.getElementById('payment-reference').value.trim();if(zone==='outside_dhaka'&&method==='cod')return toast('Outside Dhaka requires advance delivery-charge payment','error');if(method!=='cod'&&reference.length<4)return toast('Enter bKash/Nagad transaction reference','error');const payload={p_customer_name:document.getElementById('cust-name').value,p_phone:document.getElementById('cust-phone').value,p_division:document.getElementById('cust-division').value,p_district:document.getElementById('cust-district').value,p_thana:document.getElementById('cust-thana').value,p_address:document.getElementById('cust-address').value,p_delivery_note:'',p_delivery_zone:zone,p_payment_method:method,p_payment_reference:reference,p_items:cart.map(x=>({id:x.id,qty:x.qty}))};const btn=e.submitter;btn.disabled=true;btn.textContent='Placing order…';const {data,error}=await db.rpc('place_public_order',payload);btn.disabled=false;btn.textContent='Confirm Order';if(error)return toast(error.message,'error');cart=[];saveCart();updateCartUI();document.getElementById('checkout-modal').classList.add('hidden');e.target.reset();toast(`Order placed: ${data.order_number}`,'success')}
-function setup(){document.getElementById('cart-toggle-btn').addEventListener('click',openCartDrawer);document.getElementById('close-cart-btn').addEventListener('click',closeCartDrawer);document.getElementById('cart-backdrop').addEventListener('click',closeCartDrawer);document.getElementById('proceed-checkout-btn').addEventListener('click',openCheckoutModal);document.getElementById('close-checkout-btn').addEventListener('click',()=>document.getElementById('checkout-modal').classList.add('hidden'));document.getElementById('admin-modal-btn').addEventListener('click',openAdminModal);document.getElementById('close-admin-btn').addEventListener('click',()=>document.getElementById('admin-modal').classList.add('hidden'));document.getElementById('checkout-form').addEventListener('submit',submitOrder);document.getElementById('add-product-form').addEventListener('submit',addProduct);document.getElementById('admin-login-btn').addEventListener('click',async()=>{const email=document.getElementById('admin-email').value,password=document.getElementById('admin-password').value;const {error}=await db.auth.signInWithPassword({email,password});if(error)return toast(error.message,'error');if(await checkAdmin())renderAdminInventory()});document.getElementById('admin-logout-btn').addEventListener('click',async()=>{await db.auth.signOut();setAdminState(null)});document.querySelectorAll('input[name="shipping_location"]').forEach(x=>x.addEventListener('change',updateCheckoutSummary));document.querySelectorAll('input[name="payment_method"]').forEach(x=>x.addEventListener('change',()=>document.getElementById('payment-reference').classList.toggle('hidden',document.querySelector('input[name="payment_method"]:checked').value==='cod')));['search-input','search-input-mobile'].forEach(id=>document.getElementById(id).addEventListener('input',e=>{searchQuery=e.target.value;document.getElementById(id==='search-input'?'search-input-mobile':'search-input').value=e.target.value;renderProducts()}));document.getElementById('sort-select').addEventListener('change',e=>{currentSort=e.target.value;renderProducts()});document.getElementById('reset-filter-btn').addEventListener('click',()=>{currentCategory='all';searchQuery='';renderCategories();renderProducts()});document.getElementById('newsletter-form').addEventListener('submit',e=>{e.preventDefault();toast('Thank you for subscribing');e.target.reset()});}
+function setup(){document.getElementById('cart-toggle-btn').addEventListener('click',openCartDrawer);document.getElementById('close-cart-btn').addEventListener('click',closeCartDrawer);document.getElementById('cart-backdrop').addEventListener('click',closeCartDrawer);document.getElementById('proceed-checkout-btn').addEventListener('click',openCheckoutModal);document.getElementById('close-checkout-btn').addEventListener('click',()=>document.getElementById('checkout-modal').classList.add('hidden'));document.getElementById('admin-modal-btn').addEventListener('click',openAdminModal);document.getElementById('close-admin-btn').addEventListener('click',()=>document.getElementById('admin-modal').classList.add('hidden'));document.getElementById('checkout-form').addEventListener('submit',submitOrder);document.querySelectorAll('.admin-nav').forEach(b=>b.addEventListener('click',()=>adminNavigate(b.dataset.adminTab)));document.getElementById('admin-login-btn').addEventListener('click',async()=>{const email=document.getElementById('admin-email').value.trim(),password=document.getElementById('admin-password').value;document.getElementById('admin-login-error').textContent='Signing in…';const {error}=await db.auth.signInWithPassword({email,password});if(error){document.getElementById('admin-login-error').textContent=error.message;return}if(await checkAdmin())await adminNavigate('overview')});document.getElementById('admin-logout-btn').addEventListener('click',async()=>{await db.auth.signOut();setAdminState(null);document.getElementById('admin-login-error').textContent='You have signed out.'});document.querySelectorAll('input[name="shipping_location"]').forEach(x=>x.addEventListener('change',updateCheckoutSummary));document.querySelectorAll('input[name="payment_method"]').forEach(x=>x.addEventListener('change',()=>document.getElementById('payment-reference').classList.toggle('hidden',document.querySelector('input[name="payment_method"]:checked').value==='cod')));['search-input','search-input-mobile'].forEach(id=>document.getElementById(id).addEventListener('input',e=>{searchQuery=e.target.value;document.getElementById(id==='search-input'?'search-input-mobile':'search-input').value=e.target.value;renderProducts()}));document.getElementById('sort-select').addEventListener('change',e=>{currentSort=e.target.value;renderProducts()});document.getElementById('reset-filter-btn').addEventListener('click',()=>{currentCategory='all';searchQuery='';renderCategories();renderProducts()});document.getElementById('newsletter-form').addEventListener('submit',e=>{e.preventDefault();toast('Thank you for subscribing');e.target.reset()});}
 document.addEventListener('DOMContentLoaded',async()=>{setup();updateWishlistUI();try{await loadStore()}catch(e){console.error(e);toast('Store data could not load: '+e.message,'error')} });
 </script>
 </body>
